@@ -1,5 +1,5 @@
 /*
- * Tikakala Child – RTL stylesheet (default for the Persian demo)
+ * Mobile Chi – LTR stylesheet (fallback when site language is not RTL)
  * Derived from: https://demo-serverha.ir/woodmart/tikakala/
  */
 
@@ -8,10 +8,10 @@
     --tk-font-family: "yekanbakh", "IRANSans", Tahoma, Arial, Helvetica, sans-serif;
 }
 
-body.tikakala-child {
+body.mobile-chi {
     font-family: var(--tk-font-family);
-    direction: rtl;
-    text-align: right;
+    direction: ltr;
+    text-align: left;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -56,16 +56,16 @@ html .wd-single-title .product_title {
 }
 
 /* RTL-specific tweaks */
-[dir="rtl"] .wd-header-search .searchform_input {
+[dir="ltr"] .wd-header-search .searchform_input {
     padding-right: 15px;
     padding-left: 45px;
 }
 
-[dir="rtl"] .woocommerce .products .button.add_to_cart_button {
+[dir="ltr"] .woocommerce .products .button.add_to_cart_button {
     margin-right: 0;
 }
 
-/* بخش‌های اختصاصی تیکا کالا (عنوان، گرید، دکمه بالا رفتن، هدر چسبان) */
+/* بخش‌های اختصاصی موبایل چی (عنوان، گرید، دکمه بالا رفتن، هدر چسبان) */
 .tk-section-title { display: flex; align-items: center; gap: 10px; margin: 30px 0 20px; }
 .tk-section-title .tk-accent { width: 6px; height: 26px; border-radius: 3px; background-color: var(--tk-primary); display: inline-block; }
 .tk-section-title h2 { margin: 0; font-size: 22px; }
@@ -82,14 +82,14 @@ html .wd-single-title .product_title {
 .tk-grid .product-category a:hover { box-shadow: 0 6px 18px rgba(67, 95, 203, .15); }
 .tk-grid .product-category img { max-width: 100%; height: auto; margin-bottom: 8px; }
 
-.whb-main-header.tikakala-sticked { position: fixed; top: 0; right: 0; left: 0; z-index: 999; background-color: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .08); }
-.tikakala-sticky-placeholder { width: 100%; }
+.whb-main-header.mobile-chi-sticked { position: fixed; top: 0; right: 0; left: 0; z-index: 999; background-color: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .08); }
+.mobile-chi-sticky-placeholder { width: 100%; }
 
-.tikakala-back-to-top { position: fixed; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; border: none; background-color: var(--tk-primary); color: #fff; font-size: 20px; align-items: center; justify-content: center; cursor: pointer; z-index: 998; box-shadow: 0 4px 12px rgba(67, 95, 203, .35); transition: background-color .2s ease; }
-.tikakala-back-to-top:hover { background-color: var(--tk-primary-bright); }
+.mobile-chi-back-to-top { position: fixed; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; border: none; background-color: var(--tk-primary); color: #fff; font-size: 20px; align-items: center; justify-content: center; cursor: pointer; z-index: 998; box-shadow: 0 4px 12px rgba(67, 95, 203, .35); transition: background-color .2s ease; }
+.mobile-chi-back-to-top:hover { background-color: var(--tk-primary-bright); }
 
-.tikakala-trust-badges { padding: 25px 0; }
-.tikakala-trust-badges .tk-badges-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; }
+.mobile-chi-trust-badges { padding: 25px 0; }
+.mobile-chi-trust-badges .tk-badges-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; }
 .tk-badge-widget { text-align: center; }
 
-[dir="rtl"] .tikakala-back-to-top { left: 24px; }
+[dir="ltr"] .mobile-chi-back-to-top { right: 24px; }

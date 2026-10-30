@@ -1,13 +1,13 @@
 /**
- * Tikakala Child scripts.
+ * Mobile Chi Child scripts.
  * Adds a light-weight sticky-header behaviour similar to the WoodMart demo
  * (whb-sticked class toggling) without depending on theme internals.
- * Settings are provided via the `TikakalaChild` global (wp_localize_script).
+ * Settings are provided via the `MobileChi` global (wp_localize_script).
  */
 (function () {
     'use strict';
 
-    var cfg = window.TikakalaChild || {};
+    var cfg = window.MobileChi || {};
 
     function initStickyHeader() {
         var header = document.querySelector('.whb-main-header');
@@ -24,16 +24,16 @@
             ticking = true;
             window.requestAnimationFrame(function () {
                 var stick = window.pageYOffset > threshold;
-                if (stick && !header.classList.contains('tikakala-sticked')) {
+                if (stick && !header.classList.contains('mobile_chi-sticked')) {
                     if (!placeholder) {
                         placeholder = document.createElement('div');
-                        placeholder.className = 'tikakala-sticky-placeholder';
+                        placeholder.className = 'mobile_chi-sticky-placeholder';
                         placeholder.style.height = header.offsetHeight + 'px';
                         header.parentNode.insertBefore(placeholder, header.nextSibling);
                     }
-                    header.classList.add('tikakala-sticked');
-                } else if (!stick && header.classList.contains('tikakala-sticked')) {
-                    header.classList.remove('tikakala-sticked');
+                    header.classList.add('mobile_chi-sticked');
+                } else if (!stick && header.classList.contains('mobile_chi-sticked')) {
+                    header.classList.remove('mobile_chi-sticked');
                     if (placeholder && placeholder.parentNode) {
                         placeholder.parentNode.removeChild(placeholder);
                     }
@@ -50,7 +50,7 @@
     function initBackToTop() {
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'tikakala-back-to-top';
+        btn.className = 'mobile_chi-back-to-top';
         btn.setAttribute('aria-label', cfg.rtl ? 'بالا رفتن' : 'Back to top');
         btn.innerHTML = '\u2191';
         btn.style.display = 'none';

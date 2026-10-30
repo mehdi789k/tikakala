@@ -1,16 +1,16 @@
 <?php
 /**
-* Tikakala Elementor widgets.
+* Mobile Chi Elementor widgets.
 *
 * Registers home-page widgets that reproduce the structure observed in the
 * demo layout (https://demo-serverha.ir/woodmart/tikakala/):
-*   - Tikakala Hero Slider (wraps WoodMart slider shortcode)
-*   - Tikakala Categories  (product category grid, 4 columns like the demo)
-*   - Tikakala Products    (latest/sale/best-selling product grid)
+*   - Mobile Chi Hero Slider (wraps WoodMart slider shortcode)
+*   - Mobile Chi Categories  (product category grid, 4 columns like the demo)
+*   - Mobile Chi Products    (latest/sale/best-selling product grid)
 *
 * All widgets degrade gracefully when WooCommerce/Elementor are absent.
 *
-* @package tikakala-child
+* @package mobile-chi
 */
 
 defined( 'ABSPATH' ) || exit;
@@ -20,11 +20,11 @@ defined( 'ABSPATH' ) || exit;
 *
 * @return bool
 */
-function tikakala_is_elementor_active() {
+function mobile_chi_is_elementor_active() {
 	return did_action( 'elementor/loaded' ) && class_exists( '\Elementor\Widget_Base' );
 }
 
-if ( ! tikakala_is_elementor_active() ) {
+if ( ! mobile_chi_is_elementor_active() ) {
 	return;
 }
 
@@ -33,22 +33,22 @@ if ( ! tikakala_is_elementor_active() ) {
 *
 * @param \Elementor\Elements_Manager $elements_manager Elements manager.
 */
-function tikakala_register_elementor_category( $elements_manager ) {
+function mobile_chi_register_elementor_category( $elements_manager ) {
 	$elements_manager->add_category(
-	'tikakala',
+	'mobile_chi',
 	array(
-	'title' => __( 'تیکا کالا', 'tikakala-child' ),
+	'title' => __( 'موبایل چی', 'mobile-chi' ),
 	'icon'  => 'fa fa-plug',
 ),
 	1
 );
 }
-add_action( 'elementor/elements/categories_registered', 'tikakala_register_elementor_category' );
+add_action( 'elementor/elements/categories_registered', 'mobile_chi_register_elementor_category' );
 
 /**
-* Base class shared by all Tikakala widgets.
+* Base class shared by all Mobile Chi widgets.
 */
-abstract class Tikakala_Widget_Base extends \Elementor\Widget_Base {
+abstract class Mobile_Chi_Widget_Base extends \Elementor\Widget_Base {
 
 	/**
 	* Demo primary color (#435fcb extracted from --wd-primary-color).
@@ -66,7 +66,7 @@ abstract class Tikakala_Widget_Base extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 		'tk_section_style_title',
 		array(
-		'label' => __( 'عنوان بخش', 'tikakala-child' ),
+		'label' => __( 'عنوان بخش', 'mobile-chi' ),
 		'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 	)
 	);
@@ -74,7 +74,7 @@ abstract class Tikakala_Widget_Base extends \Elementor\Widget_Base {
 		$this->add_control(
 		'tk_title_color',
 		array(
-		'label'     => __( 'رنگ عنوان', 'tikakala-child' ),
+		'label'     => __( 'رنگ عنوان', 'mobile-chi' ),
 		'type'      => \Elementor\Controls_Manager::COLOR,
 		'default'   => '#111111',
 		'selectors' => array(
@@ -86,7 +86,7 @@ abstract class Tikakala_Widget_Base extends \Elementor\Widget_Base {
 		$this->add_control(
 		'tk_accent_color',
 		array(
-		'label'     => __( 'رنگ تأکیدی', 'tikakala-child' ),
+		'label'     => __( 'رنگ تأکیدی', 'mobile-chi' ),
 		'type'      => \Elementor\Controls_Manager::COLOR,
 		'default'   => $this->demo_primary_color(),
 		'selectors' => array(
@@ -114,14 +114,14 @@ abstract class Tikakala_Widget_Base extends \Elementor\Widget_Base {
 /**
 * Hero / Slider widget.
 */
-class Tikakala_Hero_Widget extends Tikakala_Widget_Base {
+class Mobile_Chi_Hero_Widget extends Mobile_Chi_Widget_Base {
 
 	public function get_name() {
-		return 'tikakala-hero';
+		return 'mobile_chi-hero';
 	}
 
 	public function get_title() {
-		return __( 'اسلایدر تیکا کالا', 'tikakala-child' );
+		return __( 'اسلایدر موبایل چی', 'mobile-chi' );
 	}
 
 	public function get_icon() {
@@ -129,19 +129,19 @@ class Tikakala_Hero_Widget extends Tikakala_Widget_Base {
 	}
 
 	public function get_categories() {
-		return array( 'tikakala' );
+		return array( 'mobile_chi' );
 	}
 
 	protected function register_controls() {
 		$this->start_controls_section(
 		'tk_section_hero',
-		array( 'label' => __( 'اسلایدر', 'tikakala-child' ) )
+		array( 'label' => __( 'اسلایدر', 'mobile-chi' ) )
 	);
 
 		$this->add_control(
 		'tk_slider_id',
 		array(
-		'label'   => __( 'شناسه اسلایدر WoodMart', 'tikakala-child' ),
+		'label'   => __( 'شناسه اسلایدر WoodMart', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::TEXT,
 		'default' => '',
 	)
@@ -150,9 +150,9 @@ class Tikakala_Hero_Widget extends Tikakala_Widget_Base {
 		$this->add_control(
 		'tk_fallback_text',
 		array(
-		'label'   => __( 'متن جایگزین (بدون اسلایدر)', 'tikakala-child' ),
+		'label'   => __( 'متن جایگزین (بدون اسلایدر)', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::TEXTAREA,
-		'default' => __( 'تیکا کالا؛ فروشگاه اینترنتی', 'tikakala-child' ),
+		'default' => __( 'موبایل چی؛ فروشگاه اینترنتی', 'mobile-chi' ),
 	)
 	);
 
@@ -165,11 +165,11 @@ class Tikakala_Hero_Widget extends Tikakala_Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$id       = isset( $settings['tk_slider_id'] ) ? trim( $settings['tk_slider_id'] ) : '';
 
-		echo '<section class="tikakala-hero-widget">';
+		echo '<section class="mobile-chi-hero-widget">';
 		if ( $id && shortcode_exists( 'woodmart_slider' ) ) {
 			echo do_shortcode( '[woodmart_slider id="' . esc_attr( $id ) . '"]' );
 			} else {
-			echo '<div class="tikakala-hero-fallback" style="background:var(--tk-primary-bg,#ebeffa);padding:60px 20px;text-align:center;">'
+			echo '<div class="mobile-chi-hero-fallback" style="background:var(--tk-primary-bg,#ebeffa);padding:60px 20px;text-align:center;">'
 			. '<h1 style="margin:0;">' . esc_html( $settings['tk_fallback_text'] ) . '</h1></div>';
 		}
 		echo '</section>';
@@ -179,14 +179,14 @@ class Tikakala_Hero_Widget extends Tikakala_Widget_Base {
 /**
 * Product categories widget.
 */
-class Tikakala_Categories_Widget extends Tikakala_Widget_Base {
+class Mobile_Chi_Categories_Widget extends Mobile_Chi_Widget_Base {
 
 	public function get_name() {
-		return 'tikakala-categories';
+		return 'mobile_chi-categories';
 	}
 
 	public function get_title() {
-		return __( 'دسته‌بندی محصولات تیکا کالا', 'tikakala-child' );
+		return __( 'دسته‌بندی محصولات موبایل چی', 'mobile-chi' );
 	}
 
 	public function get_icon() {
@@ -194,28 +194,28 @@ class Tikakala_Categories_Widget extends Tikakala_Widget_Base {
 	}
 
 	public function get_categories() {
-		return array( 'tikakala' );
+		return array( 'mobile_chi' );
 	}
 
 	protected function register_controls() {
 		$this->start_controls_section(
 		'tk_section_cats',
-		array( 'label' => __( 'دسته‌بندی‌ها', 'tikakala-child' ) )
+		array( 'label' => __( 'دسته‌بندی‌ها', 'mobile-chi' ) )
 	);
 
 		$this->add_control(
 		'tk_title',
 		array(
-		'label'   => __( 'عنوان بخش', 'tikakala-child' ),
+		'label'   => __( 'عنوان بخش', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::TEXT,
-		'default' => __( 'دسته‌بندی‌ها', 'tikakala-child' ),
+		'default' => __( 'دسته‌بندی‌ها', 'mobile-chi' ),
 	)
 	);
 
 		$this->add_control(
 		'tk_count',
 		array(
-		'label'   => __( 'تعداد دسته‌بندی‌ها', 'tikakala-child' ),
+		'label'   => __( 'تعداد دسته‌بندی‌ها', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::NUMBER,
 		'default' => 8,
 		'min'     => 1,
@@ -226,7 +226,7 @@ class Tikakala_Categories_Widget extends Tikakala_Widget_Base {
 		$this->add_control(
 		'tk_columns',
 		array(
-		'label'   => __( 'تعداد ستون‌ها', 'tikakala-child' ),
+		'label'   => __( 'تعداد ستون‌ها', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::SELECT,
 		'default' => '4',
 		'options' => array(
@@ -261,7 +261,7 @@ class Tikakala_Categories_Widget extends Tikakala_Widget_Base {
 			return;
 		}
 
-		echo '<section class="tikakala-cats-widget">';
+		echo '<section class="mobile-chi-cats-widget">';
 		$this->render_section_title( $settings['tk_title'] );
 		echo '<ul class="products tk-grid tk-cols-' . esc_attr( $settings['tk_columns'] ) . '">';
 		foreach ( $cats as $cat ) {
@@ -281,14 +281,14 @@ class Tikakala_Categories_Widget extends Tikakala_Widget_Base {
 /**
 * Products widget (latest / sale / best selling).
 */
-class Tikakala_Products_Widget extends Tikakala_Widget_Base {
+class Mobile_Chi_Products_Widget extends Mobile_Chi_Widget_Base {
 
 	public function get_name() {
-		return 'tikakala-products';
+		return 'mobile_chi-products';
 	}
 
 	public function get_title() {
-		return __( 'محصولات تیکا کالا', 'tikakala-child' );
+		return __( 'محصولات موبایل چی', 'mobile-chi' );
 	}
 
 	public function get_icon() {
@@ -296,34 +296,34 @@ class Tikakala_Products_Widget extends Tikakala_Widget_Base {
 	}
 
 	public function get_categories() {
-		return array( 'tikakala' );
+		return array( 'mobile_chi' );
 	}
 
 	protected function register_controls() {
 		$this->start_controls_section(
 		'tk_section_products',
-		array( 'label' => __( 'محصولات', 'tikakala-child' ) )
+		array( 'label' => __( 'محصولات', 'mobile-chi' ) )
 	);
 
 		$this->add_control(
 		'tk_title',
 		array(
-		'label'   => __( 'عنوان بخش', 'tikakala-child' ),
+		'label'   => __( 'عنوان بخش', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::TEXT,
-		'default' => __( 'جدیدترین محصولات', 'tikakala-child' ),
+		'default' => __( 'جدیدترین محصولات', 'mobile-chi' ),
 	)
 	);
 
 		$this->add_control(
 		'tk_source',
 		array(
-		'label'   => __( 'منبع محصولات', 'tikakala-child' ),
+		'label'   => __( 'منبع محصولات', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::SELECT,
 		'default' => 'latest',
 		'options' => array(
-		'latest' => __( 'جدیدترین', 'tikakala-child' ),
-		'sale'   => __( 'تخفیف‌دار', 'tikakala-child' ),
-		'best'   => __( 'پرفروش‌ترین', 'tikakala-child' ),
+		'latest' => __( 'جدیدترین', 'mobile-chi' ),
+		'sale'   => __( 'تخفیف‌دار', 'mobile-chi' ),
+		'best'   => __( 'پرفروش‌ترین', 'mobile-chi' ),
 	),
 	)
 	);
@@ -331,7 +331,7 @@ class Tikakala_Products_Widget extends Tikakala_Widget_Base {
 		$this->add_control(
 		'tk_count',
 		array(
-		'label'   => __( 'تعداد', 'tikakala-child' ),
+		'label'   => __( 'تعداد', 'mobile-chi' ),
 		'type'    => \Elementor\Controls_Manager::NUMBER,
 		'default' => 8,
 		'min'     => 4,
@@ -377,7 +377,7 @@ class Tikakala_Products_Widget extends Tikakala_Widget_Base {
 			return;
 		}
 
-		echo '<section class="tikakala-products-widget">';
+		echo '<section class="mobile-chi-products-widget">';
 		$this->render_section_title( $settings['tk_title'] );
 		woocommerce_product_loop_start( false );
 		while ( $loop->have_posts() ) {
@@ -391,13 +391,13 @@ class Tikakala_Products_Widget extends Tikakala_Widget_Base {
 }
 
 /**
-* Register all Tikakala widgets.
+* Register all Mobile Chi widgets.
 *
 * @param \Elementor\Widgets_Manager $widgets_manager Widgets manager.
 */
-function tikakala_register_elementor_widgets( $widgets_manager ) {
-	$widgets_manager->register( new \Tikakala_Hero_Widget() );
-	$widgets_manager->register( new \Tikakala_Categories_Widget() );
-	$widgets_manager->register( new \Tikakala_Products_Widget() );
+function mobile_chi_register_elementor_widgets( $widgets_manager ) {
+	$widgets_manager->register( new \Mobile_Chi_Hero_Widget() );
+	$widgets_manager->register( new \Mobile_Chi_Categories_Widget() );
+	$widgets_manager->register( new \Mobile_Chi_Products_Widget() );
 }
-add_action( 'elementor/widgets/register', 'tikakala_register_elementor_widgets' );
+add_action( 'elementor/widgets/register', 'mobile_chi_register_elementor_widgets' );

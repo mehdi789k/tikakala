@@ -1,11 +1,11 @@
 <?php
 /**
- * Template Name: Tikakala Home
- * Description: صفحه اصلی با چیدمان شبیه دمو تیکا کالا (اسلایدر، دسته‌بندی‌ها، محصولات).
+ * Template Name: Mobile Chi Home
+ * Description: صفحه اصلی با چیدمان شبیه دمو موبایل چی (اسلایدر، دسته‌بندی‌ها، محصولات).
  *
  * Requires WoodMart + WooCommerce. Falls back gracefully if they are missing.
  *
- * @package tikakala-child
+ * @package mobile-chi
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<div class="tikakala-home-wrap container">
+<div class="mobile-chi-home-wrap container">
 
 	<?php
 	/* -------------------------------------------------
@@ -21,13 +21,13 @@ get_header();
 	 * Uses WoodMart's slider widget shortcode if available,
 	 * otherwise shows a simple placeholder banner.
 	 * ------------------------------------------------- */
-	if ( is_active_sidebar( 'tikakala-slider' ) ) {
-		dynamic_sidebar( 'tikakala-slider' );
+	if ( is_active_sidebar( 'mobile_chi-slider' ) ) {
+		dynamic_sidebar( 'mobile_chi-slider' );
 	} else {
 		?>
-		<section class="tikakala-hero" style="background:var(--tk-primary-bg);padding:40px;text-align:center;margin-bottom:30px;">
-			<h1><?php esc_html_e( 'تیکا کالا', 'tikakala-child' ); ?></h1>
-			<p><?php esc_html_e( 'منطقه اسلایدر اصلی – از برگه‌ها > خانهک > ویجت اسلایدر استفاده کنید.', 'tikakala-child' ); ?></p>
+		<section class="mobile-chi-hero" style="background:var(--tk-primary-bg);padding:40px;text-align:center;margin-bottom:30px;">
+			<h1><?php esc_html_e( 'موبایل چی', 'mobile-chi' ); ?></h1>
+			<p><?php esc_html_e( 'منطقه اسلایدر اصلی – از برگه‌ها > خانهک > ویجت اسلایدر استفاده کنید.', 'mobile-chi' ); ?></p>
 		</section>
 		<?php
 	}
@@ -47,8 +47,8 @@ get_header();
 
 	if ( ! is_wp_error( $cats ) && ! empty( $cats ) ) :
 		?>
-		<section class="tikakala-cats product-grid cols-4 row-gap">
-			<h2 class="wd-heading-title"><?php esc_html_e( 'دسته‌بندی‌ها', 'tikakala-child' ); ?></h2>
+		<section class="mobile-chi-cats product-grid cols-4 row-gap">
+			<h2 class="wd-heading-title"><?php esc_html_e( 'دسته‌بندی‌ها', 'mobile-chi' ); ?></h2>
 			<ul class="products">
 				<?php foreach ( $cats as $cat ) : ?>
 					<li class="product-category">
@@ -85,8 +85,8 @@ get_header();
 		$loop  = new WP_Query( $args );
 		if ( $loop->have_posts() ) :
 			?>
-			<section class="tikakala-latest product-grid cols-4">
-				<h2 class="wd-heading-title"><?php esc_html_e( 'جدیدترین محصولات', 'tikakala-child' ); ?></h2>
+			<section class="mobile-chi-latest product-grid cols-4">
+				<h2 class="wd-heading-title"><?php esc_html_e( 'جدیدترین محصولات', 'mobile-chi' ); ?></h2>
 				<?php woocommerce_product_loop_start(); ?>
 				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 					<?php wc_get_template_part( 'content', 'product' ); ?>
@@ -99,7 +99,7 @@ get_header();
 	endif;
 	?>
 
-</div><!-- .tikakala-home-wrap -->
+</div><!-- .mobile-chi-home-wrap -->
 
 <?php
 get_footer();

@@ -1,22 +1,22 @@
 /*
-Theme Name: Tikakala Child (WoodMart)
+Theme Name: Mobile Chi (WoodMart) — موبایل چی
 Theme URI: https://demo-serverha.ir/woodmart/tikakala/
-Description: پوسته فرزند برای فعال‌سازی استایل و تنظیمات اختصاصی دمو «تیکا کالا» روی قالب WoodMart (RTL فارسی). این پوسته مستقیماً از کد منبع دمو الگوبرداری شده است.
+Description: پوسته فرزند «موبایل چی» برای فعال‌سازی استایل و تنظیمات اختصاصی چیدمان راست‌به‌چپ روی قالب WoodMart. مقادیر رنگ، فونت و گرید از تحلیل ظاهر دموی https://demo-serverha.ir/woodmart/tikakala/ استخراج شده‌اند. اگر قالب مادر WoodMart را ندارید، این خط را حذف کنید تا پوسته به‌صورت مستقل (بدون خطای «پوستهٔ مادر در دسترس نیست») نصب و فعال شود.
 Author: Generated from demo analysis
 Author URI: https://demo-serverha.ir/woodmart/tikakala/
 Template: woodmart
-Version: 1.1.0
+Version: 1.2.0
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: tikakala-child
+Text Domain: mobile-chi
 Tags: e-commerce, rtl, right-to-left, woocommerce, woodmart
 */
 
 /* ==========================================================================
-   متغیرهای رنگی استخراج‌شده از دمو تیکا کالا
+   متغیرهای رنگی استخراج‌شده از دمو موبایل چی
    (--wd-primary-color: rgb(67,95,203) => #435fcb)
    ========================================================================== */
 :root {
@@ -240,8 +240,8 @@ input:focus, textarea:focus, select:focus {
     margin-bottom: 8px;
 }
 
-/* هدر چسبان (کلاس اعمال‌شده توسط tikakala.js) */
-.whb-main-header.tikakala-sticked {
+/* هدر چسبان (کلاس اعمال‌شده توسط mobile-chi.js) */
+.whb-main-header.mobile-chi-sticked {
     position: fixed;
     top: 0;
     right: 0;
@@ -252,11 +252,11 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ردیف نمادهای اعتماد فوتر */
-.tikakala-trust-badges {
+.mobile-chi-trust-badges {
     padding: 25px 0;
 }
 
-.tikakala-trust-badges .tk-badges-inner {
+.mobile-chi-trust-badges .tk-badges-inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -268,8 +268,8 @@ input:focus, textarea:focus, select:focus {
     text-align: center;
 }
 
-/* دکمه «بالا رفتن» (ساخته‌شده توسط tikakala.js) */
-.tikakala-back-to-top {
+/* دکمه «بالا رفتن» (ساخته‌شده توسط mobile-chi.js) */
+.mobile-chi-back-to-top {
     position: fixed;
     bottom: 24px;
     left: 24px;
@@ -288,16 +288,87 @@ input:focus, textarea:focus, select:focus {
     transition: background-color .2s ease;
 }
 
-[dir="ltr"] .tikakala-back-to-top {
+[dir="ltr"] .mobile-chi-back-to-top {
     left: auto;
     right: 24px;
 }
 
-.tikakala-back-to-top:hover {
+.mobile-chi-back-to-top:hover {
     background-color: var(--tk-primary-bright);
 }
 
 /* حالت چسبان هدر: جای هدر را نگه می‌دارد تا پرش ایجاد نشود */
-.tikakala-sticky-placeholder {
+.mobile-chi-sticky-placeholder {
     width: 100%;
 }
+
+/* ==========================================================================
+   حالت مستقل (Standalone) — استایل قالب‌های جایگزین داخلی
+   وقتی WoodMart نصب نیست، header.php/footer.php جایگزین از این قواعد استفاده
+   می‌کنند تا سایت حتی بدون قالب مادر هم ظاهر مرتب و راست‌به‌چپ داشته باشد.
+   ========================================================================== */
+.mc-standalone body,
+body.mc-standalone {
+margin: 0;
+background: #f7f8fa;
+color: var(--tk-text, #4b4444);
+}
+
+.mc-topbar {
+background: #fff;
+box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+padding: 12px 0;
+position: sticky;
+top: 0;
+z-index: 999;
+}
+
+.mc-topbar-inner {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 15px;
+}
+
+.mc-logo-link { text-decoration: none; }
+.mc-logo-text {
+font-size: 22px;
+font-weight: 800;
+color: var(--tk-primary, #435fcb);
+}
+
+.mc-nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+gap: 14px;
+flex-wrap: wrap;
+}
+[dir="rtl"] .mc-nav ul { padding-right: 0; }
+[dir="ltr"] .mc-nav ul { padding-left: 0; }
+.mc-nav a {
+text-decoration: none;
+color: var(--tk-heading, #111);
+font-weight: 600;
+padding: 6px 10px;
+border-radius: 6px;
+}
+.mc-nav a:hover { background: var(--tk-primary-bg, #ebeffa); color: var(--tk-primary, #435fcb); }
+
+.mc-main { min-height: 60vh; padding: 30px 0; }
+.mc-main .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+.mc-entry { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.mc-entry .entry-title { margin-top: 0; color: var(--tk-heading, #111); }
+
+.mc-footer { background: #23282d; color: #cfd4db; padding: 30px 0 15px; margin-top: 40px; }
+.mc-footer .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+.mc-footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.mc-footer h4 { color: #fff; margin: 0 0 10px; }
+.mc-footer a { color: #aeb6c2; text-decoration: none; }
+.mc-footer a:hover { color: var(--tk-primary-light, #c6ceef); }
+.mc-footer ul { list-style: none; margin: 0; padding: 0; }
+.mc-copyright { border-top: 1px solid rgba(255,255,255,.12); margin-top: 20px; padding-top: 12px; font-size: 13px; text-align: center; }
