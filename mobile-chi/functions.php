@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MOBILE_CHI_VERSION', '1.2.0' );
+define( 'MOBILE_CHI_VERSION', '1.2.2' );
 
 /* -------------------------------------------------------------------------
  * Parent-theme detection & standalone fallback
@@ -62,79 +62,288 @@ function mobile_chi_has_parent() {
 	if ( null !== $cached ) {
 		return $cached;
 	}
-	$cached = ( '' !== mobile_chi_find_parent() );
+	// A parent counts as available only if its folder exists on disk with a
+	// valid style.css — independent of the (possibly stale) theme registry.
+	$found = '';
+	foreach ( mobile_chi_parent_candidates() as $slug ) {
+		if ( $slug !== basename( get_stylesheet_directory() ) && mobile_chi_parent_dir_exists( $slug ) ) {
+			$found = $slug;
+			break;
+		}
+	}
+	$cached = ( '' !== $found );
 	return $cached;
 }
 
 /* -------------------------------------------------------------------------
- * Self-healing header: remove a stale "Template:" line when the declared
- * parent theme is NOT installed. Without this, WordPress lists the theme
- * under «پوسته‌های خراب» (broken themes) and it cannot be activated.
- * With WoodMart installed, the header stays intact and the theme behaves
- * as a proper child theme.
+ * Robust parent detection + self-healing header.
+ *
+ *  - No WoodMart installed  -> strip "Template:" => valid standalone theme,
+ *    WordPress NEVER lists it under «پوسته‌های خراب».
+ *  - WoodMart installed     -> ensure "Template: woodmart" => real child.
+ *
+ * Runs at load (one DB option check per request) and on theme upload/switch.
  * ---------------------------------------------------------------------- */
 
 /**
-* Make sure style.css header matches the actual availability of WoodMart.
+* Direct filesystem check for an installed parent theme folder with a
+* valid style.css header. Independent of the WP theme registry cache, so
+* freshly uploaded themes are detected immediately.
+*
+* @param string $slug Theme directory slug (e.g. 'woodmart').
+* @return bool
 */
-function mobile_chi_fix_header_on_setup() {
-	if ( mobile_chi_has_parent() ) {
-		return; // Parent available — keep Template: woodmart.
-	}
-
-	$style = get_stylesheet_directory() . '/style.css';
-	if ( ! is_writable( $style ) ) {
-		return;
-	}
-
-	$css = file_get_contents( $style ); // phpcs:ignore
-	$css = preg_replace( '/^Template:[ \t]*woodmart.*$/mi', '', $css );
-
-	// Bump the version marker so admins can see the patch happened.
-	$css = str_replace( 'Version: 1.2.0', 'Version: 1.2.1', $css );
-
-	file_put_contents( $style, $css ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
-	wp_clean_themes_cache();
-	delete_transient( 'theme_mods_' . get_stylesheet() );
+function mobile_chi_parent_dir_exists( $slug ) {
+if ( '' === $slug || ! is_string( $slug ) ) {
+return false;
 }
-add_action( 'after_setup_theme', 'mobile_chi_fix_header_on_setup', 3 );
+$dir   = trailingslashit( WP_CONTENT_DIR ) . 'themes/' . sanitize_key( $slug );
+$style = $dir . '/style.css';
+if ( ! is_file( $style ) ) {
+return false;
+}
+$contents = file_get_contents( $style, false, null, 0, 8192 ); // phpcs:ignore
+if ( false === $contents ) {
+return false;
+}
+return (bool) preg_match( '/^[ \t\/]*Theme\s*Name\s*:/mi', $contents );
+}
 
 /**
-* Boot after activation: keep the theme usable even without WoodMart.
+* Candidate parent slugs to look for (declared one first, then common ones).
 *
-* When the declared parent is missing we remember that the theme runs in
-* standalone mode (fallback templates below), instead of leaving WordPress
-* with the «پوستهٔ مادر در دسترس نیست» broken-theme state.
+* @return string[]
+*/
+function mobile_chi_parent_candidates() {
+$candidates = array();
+
+// Declared value straight from our own style.css header (fresh read).
+$own = (string) file_get_contents( get_stylesheet_directory() . '/style.css', false, null, 0, 4096 ); // phpcs:ignore
+		if ( preg_match( '/^Template:[ 	]*([A-Za-z0-9_-]+)/mi', $own, $m ) ) {
+			$candidates[] = $m[1];
+		}
+// Registry value (may be cached/stale — harmless duplicate).
+$declared = wp_get_theme()->get( 'Template' );
+if ( $declared ) {
+$candidates[] = $declared;
+}
+$candidates = array_merge( $candidates, array( 'woodmart', 'woodmart-lite' ) );
+
+return array_values( array_unique( array_filter( $candidates ) ) );
+}
+
+/**
+* Core routine that keeps the style.css header in sync with reality.
+*
+* @return string The mode applied: 'child' or 'standalone'.
+*/
+function mobile_chi_sync_header_with_reality() {
+$style    = get_stylesheet_directory() . '/style.css';
+$has_real = '';
+foreach ( mobile_chi_parent_candidates() as $slug ) {
+if ( $slug !== basename( get_stylesheet_directory() ) && mobile_chi_parent_dir_exists( $slug ) ) {
+$has_real = $slug;
+break;
+}
+}
+
+$mode = $has_real ? 'child' : 'standalone';
+
+if ( ! wp_is_writable( dirname( $style ) ) || ! is_writable( $style ) ) {
+return $mode; // Read-only FS: runtime logic still works via fallbacks.
+}
+
+$css = file_get_contents( $style ); // phpcs:ignore
+if ( false === $css ) {
+return $mode;
+}
+
+$changed = false;
+if ( 'standalone' === $mode ) {
+$patched = preg_replace( '/^Template:[ \t]*[A-Za-z0-9_-]+.*$/mi', '', $css, 1, $count );
+if ( $count > 0 ) {
+$css     = $patched;
+$changed = true;
+}
+} else {
+// Make sure the correct Template line exists / points to the found parent.
+if ( preg_match( '/^Template:[ \t]*([A-Za-z0-9_-]+)/mi', $css, $m ) ) {
+if ( $m[1] !== $has_real ) {
+$css     = preg_replace( '/^Template:[ \t]*[A-Za-z0-9_-]+.*$/mi', 'Template: ' . $has_real, $css, 1 );
+$changed = true;
+}
+} else {
+// Re-insert the Template line right before Version:.
+$css     = preg_replace( '/^(Version:)/mi', "Template: {$has_real}\n$1", $css, 1 );
+$changed = true;
+}
+}
+
+if ( $changed ) {
+file_put_contents( $style, $css ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
+wp_clean_themes_cache();
+delete_transient( 'theme_transients' );
+}
+
+return $mode;
+}
+
+/**
+* Cheap bootstrap: re-sync only when the stored mode disagrees with the
+* filesystem, or when we have never run before. This makes the broken-theme
+* notice disappear after a single page refresh — even without activating
+* the theme — because functions.php of installed themes loads on admin
+* screens too (wp_get_themes scans them), and directly on front end.
+*/
+function mobile_chi_maybe_sync_header() {
+$saved = get_option( 'mobile_chi_runtime_mode' );
+$style = get_stylesheet_directory() . '/style.css';
+
+// If header already has no Template line, standalone mode needs no work.
+$needs_check = ( false === $saved );
+if ( ! $needs_check ) {
+$has_template = (bool) preg_match( '/^Template:[ \t]*[A-Za-z0-9_-]+/mi', (string) file_get_contents( $style, false, null, 0, 4096 ) ); // phpcs:ignore
+$parent_now = '';
+foreach ( mobile_chi_parent_candidates() as $slug ) {
+if ( $slug !== basename( get_stylesheet_directory() ) && mobile_chi_parent_dir_exists( $slug ) ) {
+$parent_now = $slug;
+break;
+}
+}
+$real_mode = $parent_now ? 'child' : 'standalone';
+// Stored mode disagrees with reality, or header state is inconsistent → resync.
+if ( $saved !== $real_mode || ( 'child' === $real_mode && ! $has_template ) ) {
+$needs_check = true;
+}
+}
+
+if ( $needs_check ) {
+update_option( 'mobile_chi_runtime_mode', mobile_chi_sync_header_with_reality(), false );
+}
+}
+mobile_chi_maybe_sync_header();
+add_action( 'load-themes.php', 'mobile_chi_sync_header_with_reality' );
+add_action( 'upgrader_process_complete', 'mobile_chi_sync_header_with_reality' );
+add_action( 'switch_theme', 'mobile_chi_sync_header_with_reality' );
+
+/**
+* Boot after activation: prepare standalone fallbacks if needed.
 */
 function mobile_chi_bootstrap() {
-	mobile_chi_fix_header_on_setup();
+	delete_option( 'mobile_chi_runtime_mode' ); // Force fresh detection on activation.
+mobile_chi_sync_header_with_reality();
+update_option( 'mobile_chi_runtime_mode', mobile_chi_is_standalone() ? 'standalone' : 'child', false );
 
-	if ( mobile_chi_is_standalone() ) {
-		set_theme_mod( 'mobile_chi_mode', 'standalone' );
-		mobile_chi_fallback_dir(); // Pre-create fallback templates on activation.
-	} else {
-		set_theme_mod( 'mobile_chi_mode', 'child' );
-	}
+if ( mobile_chi_is_standalone() ) {
+set_theme_mod( 'mobile_chi_mode', 'standalone' );
+mobile_chi_fallback_dir(); // Pre-create fallback templates on activation.
+} else {
+set_theme_mod( 'mobile_chi_mode', 'child' );
+}
 }
 add_action( 'after_switch_theme', 'mobile_chi_bootstrap', 1 );
+
+/**
+* Manual mode controls for site admins (no FTP needed):
+*
+*   ?mc-mode=child       -> force WoodMart child mode (Template line restored)
+*   ?mc-mode=standalone  -> force standalone mode (Template line removed)
+*
+* Only usable by users with manage_themes capability.
+*/
+function mobile_chi_handle_mode_switch() {
+if ( ! isset( $_GET['mc-mode'], $_GET['mc-nonce'] ) || ! is_user_logged_in() || ! current_user_can( 'manage_themes' ) ) { // phpcs:ignore
+return;
+}
+if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mc-nonce'] ) ), 'mobile_chi_switch_mode' ) ) {
+return;
+}
+$wanted = sanitize_key( sanitize_text_field( wp_unslash( $_GET['mc-mode'] ) ) ); // phpcs:ignore
+if ( ! in_array( $wanted, array( 'child', 'standalone' ), true ) ) {
+return;
+}
+
+if ( 'child' === $wanted ) {
+$found = '';
+foreach ( mobile_chi_parent_candidates() as $slug ) {
+if ( $slug !== basename( get_stylesheet_directory() ) && mobile_chi_parent_dir_exists( $slug ) ) {
+$found = $slug;
+break;
+}
+}
+if ( '' === $found ) {
+add_action( 'admin_notices', 'mobile_chi_no_parent_error_notice' );
+return;
+}
+update_option( 'mobile_chi_force_standalone', 0 );
+mobile_chi_sync_header_with_reality();
+wp_safe_redirect( add_query_arg( 'mc-switched', 'child', admin_url( 'themes.php' ) ) );
+exit;
+}
+
+update_option( 'mobile_chi_force_standalone', 1 );
+mobile_chi_sync_header_with_reality();
+mobile_chi_fallback_dir();
+wp_safe_redirect( add_query_arg( 'mc-switched', 'standalone', admin_url( 'themes.php' ) ) );
+exit;
+}
+add_action( 'admin_init', 'mobile_chi_handle_mode_switch' );
+
+/**
+* Error notice when child mode was requested but no parent theme exists.
+*/
+function mobile_chi_no_parent_error_notice() {
+echo '<div class="notice notice-error"><p><strong>' . esc_html__( 'موبایل چی:', 'mobile-chi' ) . '</strong> ' . esc_html__( 'قالب مادر WoodMart نصب نیست؛ ابتدا آن را نصب کنید، سپس دوباره حالت فرزند را انتخاب نمایید.', 'mobile-chi' ) . '</p></div>';
+}
+
+/**
+* Success notice after a manual mode switch.
+*/
+function mobile_chi_switched_notice() {
+if ( empty( $_GET['mc-switched'] ) ) { // phpcs:ignore
+return;
+}
+$mode = sanitize_key( sanitize_text_field( wp_unslash( $_GET['mc-switched'] ) ) ); // phpcs:ignore
+$msg  = 'child' === $mode
+? __( 'پوسته به حالت «فرزند WoodMart» تغییر کرد و خط Template در هدر بازمی‌گردد.', 'mobile-chi' )
+: __( 'پوسته به حالت «مستقل» تغییر کرد؛ قالب‌های جایگزین داخلی فعال هستند.', 'mobile-chi' );
+echo '<div class="notice notice-success is-dismissible"><p><strong>' . esc_html__( 'موبایل چی:', 'mobile-chi' ) . '</strong> ' . esc_html( $msg ) . '</p></div>';
+}
+add_action( 'admin_notices', 'mobile_chi_switched_notice' );
 
 /**
 * Admin notice explaining the current mode (dismissible).
 */
 function mobile_chi_mode_notice() {
-	if ( ! mobile_chi_is_standalone() ) {
-		return;
-	}
-	?>
-	<div class="notice notice-info is-dismissible">
-		<p>
-			<strong><?php esc_html_e( 'موبایل چی:', 'mobile-chi' ); ?></strong>
-			<?php esc_html_e( 'قالب مادر WoodMart پیدا نشد؛ پوسته در حالت مستقل با قالب‌های جایگزین داخلی اجرا می‌شود و هیچ بخشی از سایت خطا نمی‌دهد. برای تجربه کامل دمو، WoodMart را نصب کنید (نمایش > پوسته‌ها > افزودن پوسته)؛ پس از نصب، موبایل چی خودکار به حالت فرزند برمی‌گردد.', 'mobile-chi' ); ?>
-		</p>
-	</div>
-	<?php
+if ( ! mobile_chi_is_standalone() ) {
+return;
+}
+?>
+<div class="notice notice-info is-dismissible">
+<p>
+<strong><?php esc_html_e( 'موبایل چی:', 'mobile-chi' ); ?></strong>
+<?php esc_html_e( 'قالب مادر WoodMart پیدا نشد؛ پوسته در حالت مستقل با قالب‌های جایگزین داخلی اجرا می‌شود و هیچ بخشی از سایت خطا نمی‌دهد. برای تجربه کامل دمو، WoodMart را نصب کنید (نمایش > پوسته‌ها > افزودن پوسته)؛ پس از نصب، موبایل چی خودکار به حالت فرزند برمی‌گردد.', 'mobile-chi' ); ?>
+<?php echo mobile_chi_mode_switch_links(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+</div>
+<?php
 }
 add_action( 'admin_notices', 'mobile_chi_mode_notice' );
+
+/**
+* Render switch-mode links (nonce protected) for admins.
+*
+* @return string HTML fragment or empty string without capability.
+*/
+function mobile_chi_mode_switch_links() {
+if ( ! current_user_can( 'manage_themes' ) ) {
+return '';
+}
+$nonce = wp_create_nonce( 'mobile_chi_switch_mode' );
+$child = add_query_arg( array( 'mc-mode' => 'child', 'mc-nonce' => $nonce ), admin_url( 'themes.php' ) );
+$alone = add_query_arg( array( 'mc-mode' => 'standalone', 'mc-nonce' => $nonce ), admin_url( 'themes.php' ) );
+return ' <a href="' . esc_url( $child ) . '" class="button button-small">' . esc_html__( 'تبدیل به حالت فرزند WoodMart', 'mobile-chi' ) . '</a>'
+. ' <a href="' . esc_url( $alone ) . '" class="button button-small">' . esc_html__( 'حالت مستقل', 'mobile-chi' ) . '</a>';
+}
 
 /**
 * Allow the user to run this theme fully standalone even when WoodMart IS
@@ -284,10 +493,13 @@ PHP_SHOP;
 		$templates['taxonomy-product_cat.php'] = $shop;
 	}
 
+	$marker = '/* mobile-chi-fallback ' . MOBILE_CHI_VERSION . ' */';
+
 	foreach ( $templates as $file => $content ) {
 		$path = trailingslashit( $dir ) . $file;
-		if ( ! file_exists( $path ) ) {
-			file_put_contents( $path, $content . "\n" ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
+		// Write new files and refresh ones left over from an older version.
+		if ( ! file_exists( $path ) || false === strpos( (string) file_get_contents( $path ), $marker ) ) { // phpcs:ignore
+			file_put_contents( $path, $marker . "\n" . $content . "\n" ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
 		}
 	}
 
@@ -401,7 +613,9 @@ function mobile_chi_standalone_theme_supports() {
 	if ( ! mobile_chi_is_standalone() ) {
 		return; // Parent theme declares its own supports.
 	}
-	add_theme_support( 'title-tag' );
+	// NOTE: 'title-tag' is reserved for parent themes in child mode;
+	// requesting it here would trigger _doing_it_wrong(). The standalone
+	// fallback header prints <title> via wp_head through core defaults.
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'custom-logo' );
 	add_theme_support( 'automatic-feed-links' );
