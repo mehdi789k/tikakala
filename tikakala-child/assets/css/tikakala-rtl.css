@@ -64,3 +64,32 @@ html .wd-single-title .product_title {
 [dir="rtl"] .woocommerce .products .button.add_to_cart_button {
     margin-right: 0;
 }
+
+/* بخش‌های اختصاصی تیکا کالا (عنوان، گرید، دکمه بالا رفتن، هدر چسبان) */
+.tk-section-title { display: flex; align-items: center; gap: 10px; margin: 30px 0 20px; }
+.tk-section-title .tk-accent { width: 6px; height: 26px; border-radius: 3px; background-color: var(--tk-primary); display: inline-block; }
+.tk-section-title h2 { margin: 0; font-size: 22px; }
+
+.tk-grid { display: grid; gap: 15px; list-style: none; margin: 0; padding: 0; }
+.tk-grid.tk-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.tk-grid.tk-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.tk-grid.tk-cols-5 { grid-template-columns: repeat(5, 1fr); }
+.tk-grid.tk-cols-6 { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 992px) {
+    .tk-grid.tk-cols-4, .tk-grid.tk-cols-5, .tk-grid.tk-cols-6 { grid-template-columns: repeat(2, 1fr); }
+}
+.tk-grid .product-category a { display: block; text-align: center; padding: 15px; border: 1px solid var(--tk-border); border-radius: 8px; background: #fff; transition: box-shadow .2s ease; }
+.tk-grid .product-category a:hover { box-shadow: 0 6px 18px rgba(67, 95, 203, .15); }
+.tk-grid .product-category img { max-width: 100%; height: auto; margin-bottom: 8px; }
+
+.whb-main-header.tikakala-sticked { position: fixed; top: 0; right: 0; left: 0; z-index: 999; background-color: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .08); }
+.tikakala-sticky-placeholder { width: 100%; }
+
+.tikakala-back-to-top { position: fixed; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; border: none; background-color: var(--tk-primary); color: #fff; font-size: 20px; align-items: center; justify-content: center; cursor: pointer; z-index: 998; box-shadow: 0 4px 12px rgba(67, 95, 203, .35); transition: background-color .2s ease; }
+.tikakala-back-to-top:hover { background-color: var(--tk-primary-bright); }
+
+.tikakala-trust-badges { padding: 25px 0; }
+.tikakala-trust-badges .tk-badges-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; }
+.tk-badge-widget { text-align: center; }
+
+[dir="rtl"] .tikakala-back-to-top { left: 24px; }

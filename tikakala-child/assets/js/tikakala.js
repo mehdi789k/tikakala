@@ -2,9 +2,12 @@
  * Tikakala Child scripts.
  * Adds a light-weight sticky-header behaviour similar to the WoodMart demo
  * (whb-sticked class toggling) without depending on theme internals.
+ * Settings are provided via the `TikakalaChild` global (wp_localize_script).
  */
 (function () {
     'use strict';
+
+    var cfg = window.TikakalaChild || {};
 
     function initStickyHeader() {
         var header = document.querySelector('.whb-main-header');
@@ -13,16 +16,28 @@
         }
 
         var threshold = header.offsetTop + 200;
+        var placeholder = null;
         var ticking = false;
 
         function onScroll() {
             if (ticking) return;
             ticking = true;
             window.requestAnimationFrame(function () {
-                if (window.pageYOffset > threshold) {
+                var stick = window.pageYOffset > threshold;
+                if (stick && !header.classList.contains('tikakala-sticked')) {
+                    if (!placeholder) {
+                        placeholder = document.createElement('div');
+                        placeholder.className = 'tikakala-sticky-placeholder';
+                        placeholder.style.height = header.offsetHeight + 'px';
+                        header.parentNode.insertBefore(placeholder, header.nextSibling);
+                    }
                     header.classList.add('tikakala-sticked');
-                } else {
+                } else if (!stick && header.classList.contains('tikakala-sticked')) {
                     header.classList.remove('tikakala-sticked');
+                    if (placeholder && placeholder.parentNode) {
+                        placeholder.parentNode.removeChild(placeholder);
+                    }
+                    placeholder = null;
                 }
                 ticking = false;
             });
@@ -32,9 +47,32 @@
         onScroll();
     }
 
-    if (document.readyState !== 'loading') {
+    function initBackToTop() {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tikakala-back-to-top';
+        btn.setAttribute('aria-label', cfg.rtl ? 'بالا رفتن' : 'Back to top');
+        btn.innerHTML = '\u2191';
+        btn.style.display = 'none';
+        document.body.appendChild(btn);
+
+        btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', function () {
+            btn.style.display = window.pageYOffset > 600 ? 'flex' : 'none';
+        }, { passive: true });
+    }
+
+    function boot() {
         initStickyHeader();
+        initBackToTop();
+    }
+
+    if (document.readyState !== 'loading') {
+        boot();
     } else {
-        document.addEventListener('DOMContentLoaded', initStickyHeader);
+        document.addEventListener('DOMContentLoaded', boot);
     }
 })();
