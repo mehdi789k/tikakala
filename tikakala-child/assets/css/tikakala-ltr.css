@@ -1,0 +1,66 @@
+/*
+ * Tikakala Child – LTR stylesheet (fallback when site language is not RTL)
+ * Derived from: https://demo-serverha.ir/woodmart/tikakala/
+ */
+
+/* Typography used in the demo (Yekan Bakh / IRANSans fallbacks). */
+:root {
+    --tk-font-family: "yekanbakh", "IRANSans", Tahoma, Arial, Helvetica, sans-serif;
+}
+
+body.tikakala-child {
+    font-family: var(--tk-font-family);
+    direction: ltr;
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6,
+.wd-heading-title,
+.widget .widget-title {
+    font-family: var(--tk-font-family);
+}
+
+html .product-image-summary-wrap .product_title,
+html .wd-single-title .product_title {
+    font-family: var(--tk-font-family);
+    font-size: 14px;
+}
+
+/* Header builder rows (from demo header-base.css) */
+.whb-color-dark:not(.whb-with-bg) { background-color: #fff; }
+.whb-color-light:not(.whb-with-bg) { background-color: #212121; }
+
+.whb-main-header .wd-nav-header > li > a {
+    color: #333;
+}
+
+.whb-top-bar .wd-tools-element .wd-tools-text {
+    font-weight: 400;
+}
+
+/* Product cards spacing similar to demo grid */
+.product-grid {
+    --tk-tags-mb: 10px;
+}
+
+/* Sticky footer CTA height on tablets (demo media query) */
+@media (max-width: 1024px) {
+    :root {
+        --wd-sticky-btn-height: 95px;
+    }
+}
+
+/* Quick view popup width from demo */
+.mfp-wrap.wd-popup-quick-view-wrap {
+    --wd-popup-width: 920px;
+}
+
+/* RTL-specific tweaks */
+[dir="ltr"] .wd-header-search .searchform_input {
+    padding-right: 15px;
+    padding-left: 45px;
+}
+
+[dir="ltr"] .woocommerce .products .button.add_to_cart_button {
+    margin-right: 0;
+}

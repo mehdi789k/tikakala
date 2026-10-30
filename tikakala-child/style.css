@@ -1,0 +1,181 @@
+/*
+Theme Name: Tikakala Child (WoodMart)
+Theme URI: https://demo-serverha.ir/woodmart/tikakala/
+Description: پوسته فرزند برای فعال‌سازی استایل و تنظیمات اختصاصی دمو «تیکا کالا» روی قالب WoodMart (RTL فارسی). این پوسته مستقیماً از کد منبع دمو الگوبرداری شده است.
+Author: Generated from demo analysis
+Author URI: https://demo-serverha.ir/woodmart/tikakala/
+Template: woodmart
+Version: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.6
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tikakala-child
+Tags: e-commerce, rtl, right-to-left, woocommerce, woodmart
+*/
+
+/* ==========================================================================
+   متغیرهای رنگی استخراج‌شده از دمو تیکا کالا
+   (--wd-primary-color: rgb(67,95,203) => #435fcb)
+   ========================================================================== */
+:root {
+    --tk-primary: #435fcb;
+    --tk-primary-bright: #3965ef;
+    --tk-primary-light: #c6ceef;
+    --tk-primary-bg: #ebeffa;
+    --tk-dark: #2c2c2c;
+    --tk-heading: #111111;
+    --tk-text: #4b4444;
+    --tk-muted: #7b85a3;
+    --tk-border: #f0f0f0;
+    --tk-bg-light: #f5f5f5;
+    --tk-badge: #eabe12;
+}
+
+body {
+    color: var(--tk-text);
+}
+
+h1, h2, h3, h4, h5, h6,
+.widget .widget-title,
+.wd-products-widget .wd-title {
+    color: var(--tk-heading);
+}
+
+a {
+    color: var(--tk-primary);
+}
+
+a:hover, a:focus {
+    color: var(--tk-primary-bright);
+}
+
+/* دکمه‌ها */
+.btn, button, input[type="submit"],
+.wd-btn, .woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.wd-form-submit input[type="submit"] {
+    background-color: var(--tk-primary);
+    border-color: var(--tk-primary);
+    color: #fff;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+
+.btn:hover, button:hover, input[type="submit"]:hover,
+.wd-btn:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover {
+    background-color: var(--tk-primary-bright);
+    border-color: var(--tk-primary-bright);
+    color: #fff;
+}
+
+/* هدر */
+.whb-main-header {
+    background-color: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+}
+
+.whb-top-bar {
+    background-color: var(--tk-primary);
+    color: rgba(255, 255, 255, .9);
+}
+
+.whb-top-bar a {
+    color: #fff;
+}
+
+.whb-top-bar a:hover {
+    color: rgba(255, 255, 255, .8);
+}
+
+.wd-header-search .searchform_submit,
+.wd-search-submit {
+    background-color: var(--tk-primary);
+    color: #fff;
+}
+
+/* منوی دسته‌بندی / ناوبری اصلی */
+.wd-nav-header > li > a {
+    color: var(--tk-dark);
+}
+
+.wd-nav-header > li > a:hover,
+.wd-nav-header > li.current-menu-item > a {
+    color: var(--tk-primary);
+}
+
+/* محصولات */
+.product-grid .product .woocommerce-loop-product__title a:hover {
+    color: var(--tk-primary);
+}
+
+.product-grid .price, .amount,
+.woocommerce ul.products li.product .price {
+    color: var(--tk-primary);
+}
+
+.product .out-of-stock-label,
+.wd-product-label-outer .wd-label-content {
+    background-color: var(--tk-badge);
+}
+
+.onsale {
+    background-color: var(--tk-primary) !important;
+    color: #fff !important;
+}
+
+/* فوتر */
+footer, .wd-footer, .site-footer {
+    background-color: var(--tk-heading);
+    color: rgba(255, 255, 255, .8);
+}
+
+footer a, .wd-footer a {
+    color: rgba(255, 255, 255, .9);
+}
+
+footer a:hover, .wd-footer a:hover {
+    color: #fff;
+}
+
+.wd-footer .widget-title, footer .widget-title {
+    color: #fff;
+}
+
+/* ویجت‌ها و فرم‌ها */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="search"], input[type="tel"], textarea, select {
+    border-color: var(--tk-border);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--tk-primary-light);
+    outline: none;
+}
+
+/* جدول سبد خرید و حساب کاربری ووکامرس */
+.woocommerce table.shop_table th {
+    background-color: var(--tk-bg-light);
+    color: var(--tk-heading);
+}
+
+.woocommerce-message, .woocommerce-info {
+    border-top-color: var(--tk-primary);
+}
+
+.woocommerce-message::before, .woocommerce-info::before {
+    color: var(--tk-primary);
+}
+
+/* واکنش‌گرا */
+@media (max-width: 768px) {
+    .whb-top-bar {
+        display: none;
+    }
+}
