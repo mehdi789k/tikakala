@@ -4,7 +4,7 @@ Theme URI: https://demo-serverha.ir/woodmart/tikakala/
 Description: پوسته «موبایل چی» — بازسازی‌شده از تحلیل ظاهر دموی https://demo-serverha.ir/woodmart/tikakala/ (رنگ #435fcb، فونت یکان‌بخ/ایران‌سنس، گرید ۴ستونه، RTL). در دو حالت اجرا می‌شود: ۱) پوسته فرزند WoodMart (در صورت نصب بودن قالب مادر) ۲) حالت مستقل با قالب‌های جایگزین داخلی — پوسته بدون قالب مادر هم قابل نصب/فعال‌سازی است (خط Template حذف شده تا هرگز در فهرست «پوسته‌های خراب» نیفتد)؛ با نصب WoodMart، فایل functions.php خودکار خط «Template: woodmart» را به هدر بازمی‌گرداند و پوسته به حالت فرزند تبدیل می‌شود. در حالت مستقل، تمام بخش‌ها (خانه، نوشته‌ها، برگه‌ها، بایگانی، جستجو و صفحه محصولات ووکامرس) با قالب‌های جایگزین داخلی در دسترس‌اند.
 Author: Generated from demo analysis
 Author URI: https://demo-serverha.ir/woodmart/tikakala/
-Version: 1.2.2
+Version: 1.2.3
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.4
@@ -437,3 +437,49 @@ border-radius: 6px;
     font-weight: 700;
 }
 .mc-standalone ul.products.tk-grid li.product .button:hover { background: var(--tk-primary-bright, #3965ef); }
+
+/* ==========================================================================
+   حالت مستقل — بخش‌های جدید (قالب‌های جایگزین)
+   ========================================================================== */
+.mc-hero {
+    background: linear-gradient(135deg, var(--tk-primary, #435fcb), var(--tk-primary-bright, #3965ef));
+    color: #fff;
+    padding: 46px 0;
+    margin-bottom: 26px;
+    text-align: center;
+}
+.mc-hero .entry-title { color: #fff; margin: 0 0 8px; font-size: 30px; }
+.mc-hero p { margin: 0; opacity: .9; }
+
+.mc-cat-grid { list-style: none; margin: 0 0 26px; padding: 0; }
+.mc-cat-grid li.product-category {
+    background: #fff;
+    border: 1px solid var(--tk-border, #f0f0f0);
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+    transition: box-shadow .2s ease;
+}
+.mc-cat-grid li.product-category:hover { box-shadow: 0 6px 18px rgba(67,95,203,.14); }
+.mc-cat-grid a { text-decoration: none; }
+
+.mc-404 { text-align: center; padding: 40px 0; }
+.mc-404 .entry-title { color: var(--tk-primary, #435fcb); }
+
+.mc-single-product { padding: 20px 0 40px; }
+.mc-single-product .mc-sp-img img { max-width: 100%; height: auto; border-radius: 10px; }
+.mc-sp-price { font-size: 22px; font-weight: 800; color: var(--tk-primary, #435fcb); margin: 10px 0 18px; }
+.mc-add-cart button,
+.mc-wc-page .button,
+.woocommerce-button {
+    background: var(--tk-primary, #435fcb);
+    color: #fff !important;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 26px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+.mc-add-cart button:hover { background: var(--tk-primary-bright, #3965ef); }
+.mc-wc-page { padding: 20px 0 40px; }

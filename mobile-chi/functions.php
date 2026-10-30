@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MOBILE_CHI_VERSION', '1.2.2' );
+define( 'MOBILE_CHI_VERSION', '1.2.3' );
 
 /* -------------------------------------------------------------------------
  * Parent-theme detection & standalone fallback
@@ -477,6 +477,87 @@ if ( $mc_q->have_posts() ) : ?>
 get_footer();
 PHP_SHOP;
 
+	// Home / front page fallback with demo-like sections.
+	$front = <<<'PHP_FRONT'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+echo '<section class="mc-hero"><div class="container"><h1 class="entry-title">' . esc_html( get_bloginfo( 'name' ) ) . '</h1><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div></section>';
+if ( class_exists( 'WooCommerce' ) ) {
+        echo '<div class="container">';
+        if ( taxonomy_exists( 'product_cat' ) ) {
+                $mc_terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'number' => 8 ) );
+                if ( ! is_wp_error( $mc_terms ) && $mc_terms ) {
+                        echo '<h2 class="tk-section-title"><span class="tk-accent"></span>' . esc_html__( 'دسته‌بندی‌ها', 'mobile-chi' ) . '</h2><ul class="tk-grid tk-cols-4 mc-cat-grid">';
+                        foreach ( $mc_terms as $mc_term ) {
+                                echo '<li class="product-category"><a href="' . esc_url( get_term_link( $mc_term ) ) . '"><span>' . esc_html( $mc_term->name ) . '</span></a></li>';
+                        }
+                        echo '</ul>';
+                }
+        }
+        $mc_q = new WP_Query( array( 'post_type' => 'product', 'posts_per_page' => 8, 'orderby' => 'date', 'order' => 'DESC' ) );
+        if ( $mc_q->have_posts() ) {
+                echo '<h2 class="tk-section-title"><span class="tk-accent"></span>' . esc_html__( 'جدیدترین محصولات', 'mobile-chi' ) . '</h2><ul class="products tk-grid tk-cols-4">';
+                while ( $mc_q->have_posts() ) { $mc_q->the_post(); wc_get_template_part( 'content', 'product' ); }
+                echo '</ul>';
+                wp_reset_postdata();
+        }
+        echo '</div>';
+}
+if ( have_posts() ) {
+        echo '<div class="container">';
+        while ( have_posts() ) : the_post();
+                echo '<article class="mc-entry"><h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h2><p>' . esc_html( wp_trim_words( get_the_excerpt(), 30 ) ) . '</p></article>';
+        endwhile;
+        echo '</div>';
+}
+get_footer();
+PHP_FRONT;
+
+	// 404 fallback page.
+	$notfound = <<<'PHP_404'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+echo '<div class="container mc-404"><h1 class="entry-title">' . esc_html__( 'صفحه پیدا نشد (۴۰۴)', 'mobile-chi' ) . '</h1><p>' . esc_html__( 'متأسفانه صفحه‌ای که به آن مراجعه کردید وجود ندارد. از منو یا جستجو استفاده کنید.', 'mobile-chi' ) . '</p>';
+echo '<form role="search" method="get" class="mc-search-form" action="' . esc_url( home_url( '/' ) ) . '"><input type="search" name="s" placeholder="' . esc_attr__( 'جستجو در سایت…', 'mobile-chi' ) . '" /><button type="submit">' . esc_html__( 'جستجو', 'mobile-chi' ) . '</button></form></div>';
+get_footer();
+PHP_404;
+
+	// Single product fallback (standalone WooCommerce).
+	$single_product = <<<'PHP_SP'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+while ( have_posts() ) : the_post();
+        global $product;
+        echo '<div class="container mc-single-product">';
+        the_title( '<h1 class="entry-title">', '</h1>' );
+        if ( $product && is_a( $product, 'WC_Product' ) ) {
+                echo '<div class="mc-sp-price">' . wp_kses_post( $product->get_price_html() ) . '</div>';
+                if ( has_post_thumbnail() ) { echo '<div class="mc-sp-img">' . get_the_post_thumbnail( null, 'large' ) . '</div>'; }
+                the_content();
+                echo '<form class="cart mc-add-cart" method="post"><button type="submit" name="add-to-cart" value="' . esc_attr( get_the_ID() ) . '">' . esc_html__( 'افزودن به سبد خرید', 'mobile-chi' ) . '</button></form>';
+        } else {
+                the_content();
+        }
+        echo '</div>';
+endwhile;
+get_footer();
+PHP_SP;
+
+	// Cart / checkout / account pages render their own shortcode content.
+	$wc_page = <<<'PHP_WCP'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+echo '<div class="container mc-wc-page">';
+the_title( '<h1 class="entry-title">', '</h1>' );
+if ( have_posts() ) { while ( have_posts() ) : the_post(); the_content(); endwhile; }
+echo '</div>';
+get_footer();
+PHP_WCP;
+
 	$templates = array(
 		'header.php'   => $header,
 		'footer.php'   => $footer,
@@ -488,9 +569,16 @@ PHP_SHOP;
 		'search.php'   => $search,
 	);
 
+	$templates['front-page.php'] = $front;
+	$templates['404.php']       = $notfound;
+
 	if ( class_exists( 'WooCommerce' ) ) {
-		$templates['archive-product.php'] = $shop;
-		$templates['taxonomy-product_cat.php'] = $shop;
+		$templates['archive-product.php']               = $shop;
+		$templates['taxonomy-product_cat.php']          = $shop;
+		$templates['single-product.php']                = $single_product;
+		$templates['woocommerce-cart-fallback.php']     = $wc_page;
+		$templates['woocommerce-checkout-fallback.php'] = $wc_page;
+		$templates['woocommerce-account-fallback.php']  = $wc_page;
 	}
 
 	$marker = '/* mobile-chi-fallback ' . MOBILE_CHI_VERSION . ' */';
@@ -507,25 +595,71 @@ PHP_SHOP;
 }
 
 /**
+* Map any WP request to one of our fallback template file names.
+*
+* @param string $base Current template basename (unused; kept for filters).
+* @return string Fallback template basename.
+*/
+function mobile_chi_map_fallback_base( $base ) {
+if ( function_exists( 'is_product' ) && is_singular( 'product' ) ) {
+return 'single-product.php';
+}
+if ( function_exists( 'is_cart' ) && is_cart() ) {
+return 'woocommerce-cart-fallback.php';
+}
+if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+return 'woocommerce-checkout-fallback.php';
+}
+if ( function_exists( 'is_account_page' ) && is_account_page() ) {
+return 'woocommerce-account-fallback.php';
+}
+if ( is_404() ) {
+return '404.php';
+}
+if ( is_search() ) {
+return 'search.php';
+}
+if ( is_archive() || is_post_type_archive() || is_tax() ) {
+if ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() ) {
+return 'taxonomy-product_cat.php';
+}
+if ( function_exists( 'is_shop' ) && is_shop() ) {
+return 'archive-product.php';
+}
+return 'archive.php';
+}
+if ( is_front_page() || is_home() ) {
+return 'front-page.php';
+}
+if ( is_singular( 'page' ) ) {
+return 'page.php';
+}
+if ( is_singular() ) {
+return 'single.php';
+}
+return 'index.php';
+}
+
+/**
 * Route WP to the fallback templates when running standalone.
 *
 * @param string $template Resolved template path.
 * @return string
 */
 function mobile_chi_template_loader( $template ) {
-	if ( ! mobile_chi_is_standalone() ) {
-		return $template; // WoodMart handles front-end templates.
-	}
+if ( ! mobile_chi_is_standalone() ) {
+return $template; // WoodMart handles front-end templates.
+}
 
-	$base     = basename( $template );
-	$fallback = trailingslashit( mobile_chi_fallback_dir() ) . $base;
+$dir    = mobile_chi_fallback_dir();
+$base   = mobile_chi_map_fallback_base( basename( $template ) );
+$chosen = trailingslashit( $dir ) . $base;
 
-	if ( file_exists( $fallback ) && 0 === validate_file( $fallback ) ) {
-		return $fallback;
-	}
+if ( ! file_exists( $chosen ) || 0 !== validate_file( $chosen ) ) {
+$chosen = trailingslashit( $dir ) . 'index.php';
+}
 
-	$index = trailingslashit( mobile_chi_fallback_dir() ) . 'index.php';
-	return file_exists( $index ) ? $index : $template;
+return file_exists( $chosen ) && 0 === validate_file( $chosen ) ? $chosen : $template;
 }
 add_filter( 'template_include', 'mobile_chi_template_loader', 99 );
 
