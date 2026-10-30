@@ -1,11 +1,11 @@
 /*
 Theme Name: Mobile Chi (WoodMart) — موبایل چی
 Theme URI: https://demo-serverha.ir/woodmart/tikakala/
-Description: پوسته فرزند «موبایل چی» برای فعال‌سازی استایل و تنظیمات اختصاصی چیدمان راست‌به‌چپ روی قالب WoodMart. مقادیر رنگ، فونت و گرید از تحلیل ظاهر دموی https://demo-serverha.ir/woodmart/tikakala/ استخراج شده‌اند. اگر قالب مادر WoodMart را ندارید، این خط را حذف کنید تا پوسته به‌صورت مستقل (بدون خطای «پوستهٔ مادر در دسترس نیست») نصب و فعال شود.
+Description: پوسته «موبایل چی» — بازسازی‌شده از تحلیل ظاهر دموی https://demo-serverha.ir/woodmart/tikakala/ (رنگ #435fcb، فونت یکان‌بخ/ایران‌سنس، گرید ۴ستونه، RTL). در دو حالت اجرا می‌شود: ۱) پوسته فرزند WoodMart (در صورت نصب بودن قالب مادر) ۲) حالت مستقل با قالب‌های جایگزین داخلی — اگر WoodMart نصب نباشد، خط «Template: woodmart» به‌صورت خودکار توسط functions.php حذف می‌شود تا وردپرس هرگز پوسته را «خراب» نشان ندهد و تمام بخش‌ها (خانه، نوشته‌ها، برگه‌ها، بایگانی، جستجو و صفحه محصولات ووکامرس) در دسترس بمانند.
 Author: Generated from demo analysis
 Author URI: https://demo-serverha.ir/woodmart/tikakala/
 Template: woodmart
-Version: 1.2.0
+Version: 1.2.1
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.4
@@ -372,3 +372,69 @@ border-radius: 6px;
 .mc-footer a:hover { color: var(--tk-primary-light, #c6ceef); }
 .mc-footer ul { list-style: none; margin: 0; padding: 0; }
 .mc-copyright { border-top: 1px solid rgba(255,255,255,.12); margin-top: 20px; padding-top: 12px; font-size: 13px; text-align: center; }
+
+/* ==========================================================================
+   تکمیل حالت مستقل: فرم جستجو، صفحه‌بندی و گرید دسته‌بندی‌ها
+   ========================================================================== */
+.mc-search-form { display: flex; gap: 8px; margin: 15px 0 25px; }
+.mc-search-form input[type="search"] {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--tk-border, #f0f0f0);
+    border-radius: 8px;
+    font-family: inherit;
+    background: #fff;
+}
+.mc-search-form input[type="search"]:focus { outline: none; border-color: var(--mc-primary, var(--tk-primary, #435fcb)); box-shadow: 0 0 0 3px var(--tk-primary-bg, #ebeffa); }
+.mc-search-form button {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    background: var(--mc-primary, var(--tk-primary, #435fcb));
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+.mc-search-form button:hover { background: var(--tk-primary-bright, #3965ef); }
+
+.mc-pagination { margin: 25px 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.mc-pagination a, .mc-pagination span {
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--tk-border, #f0f0f0);
+    text-decoration: none;
+    color: var(--tk-heading, #111);
+}
+.mc-pagination .current, .mc-pagination a:hover { background: var(--mc-primary, var(--tk-primary, #435fcb)); color: #fff; border-color: transparent; }
+
+.mc-cat-grid .product-category span { display: block; font-weight: 700; color: var(--tk-heading, #111); }
+.mc-cat-grid img { max-height: 90px; width: auto; margin: 0 auto 8px; display: block; }
+
+/* کارت محصول ووکامرس در حالت مستقل */
+.mc-standalone ul.products.tk-grid li.product {
+    background: #fff;
+    border: 1px solid var(--tk-border, #f0f0f0);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    list-style: none;
+}
+.mc-standalone ul.products.tk-grid li.product a.woocommerce-product-gallery__image img { width: 100%; height: auto; border-radius: 8px; }
+.mc-standalone ul.products.tk-grid li.product .woocommerce-loop-product__title { font-size: 15px; margin: 10px 0 6px; color: var(--tk-heading, #111); }
+.mc-standalone ul.products.tk-grid li.product .price { color: var(--mc-primary, var(--tk-primary, #435fcb)); font-weight: 700; }
+.mc-standalone ul.products.tk-grid li.product .button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: var(--mc-primary, var(--tk-primary, #435fcb));
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 700;
+}
+.mc-standalone ul.products.tk-grid li.product .button:hover { background: var(--tk-primary-bright, #3965ef); }

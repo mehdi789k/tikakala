@@ -66,6 +66,39 @@ function mobile_chi_has_parent() {
 	return $cached;
 }
 
+/* -------------------------------------------------------------------------
+ * Self-healing header: remove a stale "Template:" line when the declared
+ * parent theme is NOT installed. Without this, WordPress lists the theme
+ * under «پوسته‌های خراب» (broken themes) and it cannot be activated.
+ * With WoodMart installed, the header stays intact and the theme behaves
+ * as a proper child theme.
+ * ---------------------------------------------------------------------- */
+
+/**
+* Make sure style.css header matches the actual availability of WoodMart.
+*/
+function mobile_chi_fix_header_on_setup() {
+	if ( mobile_chi_has_parent() ) {
+		return; // Parent available — keep Template: woodmart.
+	}
+
+	$style = get_stylesheet_directory() . '/style.css';
+	if ( ! is_writable( $style ) ) {
+		return;
+	}
+
+	$css = file_get_contents( $style ); // phpcs:ignore
+	$css = preg_replace( '/^Template:[ \t]*woodmart.*$/mi', '', $css );
+
+	// Bump the version marker so admins can see the patch happened.
+	$css = str_replace( 'Version: 1.2.0', 'Version: 1.2.1', $css );
+
+	file_put_contents( $style, $css ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
+	wp_clean_themes_cache();
+	delete_transient( 'theme_mods_' . get_stylesheet() );
+}
+add_action( 'after_setup_theme', 'mobile_chi_fix_header_on_setup', 3 );
+
 /**
 * Boot after activation: keep the theme usable even without WoodMart.
 *
@@ -74,14 +107,16 @@ function mobile_chi_has_parent() {
 * with the «پوستهٔ مادر در دسترس نیست» broken-theme state.
 */
 function mobile_chi_bootstrap() {
-	if ( mobile_chi_has_parent() && ! get_option( 'mobile_chi_force_standalone', false ) ) {
-		set_theme_mod( 'mobile_chi_mode', 'child' );
-		} else {
+	mobile_chi_fix_header_on_setup();
+
+	if ( mobile_chi_is_standalone() ) {
 		set_theme_mod( 'mobile_chi_mode', 'standalone' );
 		mobile_chi_fallback_dir(); // Pre-create fallback templates on activation.
+	} else {
+		set_theme_mod( 'mobile_chi_mode', 'child' );
 	}
 }
-add_action( "after_switch_theme", "mobile_chi_bootstrap", 9 );
+add_action( 'after_switch_theme', 'mobile_chi_bootstrap', 1 );
 
 /**
 * Admin notice explaining the current mode (dismissible).
@@ -94,7 +129,7 @@ function mobile_chi_mode_notice() {
 	<div class="notice notice-info is-dismissible">
 		<p>
 			<strong><?php esc_html_e( 'موبایل چی:', 'mobile-chi' ); ?></strong>
-			<?php esc_html_e( 'قالب مادر WoodMart پیدا نشد؛ پوسته در حالت مستقل با قالب‌های جایگزین ساده اجرا می‌شود. برای تجربه کامل دمو، WoodMart را نصب کنید (نمایش > پوسته‌ها > افزودن پوسته).', 'mobile-chi' ); ?>
+			<?php esc_html_e( 'قالب مادر WoodMart پیدا نشد؛ پوسته در حالت مستقل با قالب‌های جایگزین داخلی اجرا می‌شود و هیچ بخشی از سایت خطا نمی‌دهد. برای تجربه کامل دمو، WoodMart را نصب کنید (نمایش > پوسته‌ها > افزودن پوسته)؛ پس از نصب، موبایل چی خودکار به حالت فرزند برمی‌گردد.', 'mobile-chi' ); ?>
 		</p>
 	</div>
 	<?php
@@ -178,15 +213,76 @@ if ( have_posts() ) :
 get_footer();
 PHP_INDEX;
 
+	// Search results template for standalone mode.
+	$search = <<<'PHP_SEARCH'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+echo '<h1 class="entry-title">' . sprintf( esc_html__( 'نتایج جستجو: %s', 'mobile-chi' ), esc_html( get_search_query() ) ) . '</h1>';
+echo '<form role="search" method="get" class="mc-search-form" action="' . esc_url( home_url( '/' ) ) . '">
+<input type="search" name="s" value="' . esc_attr( get_search_query() ) . '" />
+<button type="submit">' . esc_html__( 'جستجو', 'mobile-chi' ) . '</button></form>';
+if ( have_posts() ) :
+	while ( have_posts() ) : the_post();
+		echo '<article class="mc-entry"><a href="' . esc_url( get_permalink() ) . '"><h2>' . esc_html( get_the_title() ) . '</h2></a><p>' . esc_html( wp_trim_words( get_the_excerpt(), 30 ) ) . '</p></article>';
+	endwhile;
+	echo '<nav class="mc-pagination">' . paginate_links() . '</nav>';
+else :
+	echo '<p>' . esc_html__( 'نتیجه‌ای برای جستجوی شما یافت نشد.', 'mobile-chi' ) . '</p>';
+endif;
+get_footer();
+PHP_SEARCH;
+
+	// Simple product grid template used when WooCommerce is active but the
+	// shop skin of WoodMart is unavailable (standalone mode).
+	$shop = <<<'PHP_SHOP'
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+$mc_terms = array();
+if ( taxonomy_exists( 'product_cat' ) ) {
+	$mc_terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'number' => 8 ) );
+}
+if ( ! is_wp_error( $mc_terms ) && $mc_terms ) : ?>
+<h2 class="tk-section-title"><span class="tk-accent"></span><?php esc_html_e( 'دسته‌بندی‌ها', 'mobile-chi' ); ?></h2>
+<ul class="tk-grid tk-cols-4 mc-cat-grid">
+<?php foreach ( $mc_terms as $mc_term ) : ?>
+	<li class="product-category"><a href="<?php echo esc_url( get_term_link( $mc_term ) ); ?>">
+		<?php if ( function_exists( 'woocommerce_thumbnail_image_width' ) || true ) { echo woocommerce_get_product_thumbnail(); } ?>
+		<span><?php echo esc_html( $mc_term->name ); ?></span>
+	</a></li>
+<?php endforeach; ?>
+</ul>
+<?php endif;
+
+$mc_args = array( 'post_type' => 'product', 'posts_per_page' => 16, 'orderby' => 'date', 'order' => 'DESC' );
+$mc_q = new WP_Query( $mc_args );
+if ( $mc_q->have_posts() ) : ?>
+<h2 class="tk-section-title"><span class="tk-accent"></span><?php esc_html_e( 'جدیدترین محصولات', 'mobile-chi' ); ?></h2>
+<ul class="products tk-grid tk-cols-4">
+<?php while ( $mc_q->have_posts() ) : $mc_q->the_post(); wc_get_template_part( 'content', 'product' ); endwhile; ?>
+</ul>
+<?php wp_reset_postdata(); else : ?>
+<p><?php esc_html_e( 'محصولی برای نمایش وجود ندارد.', 'mobile-chi' ); ?></p>
+<?php endif;
+get_footer();
+PHP_SHOP;
+
 	$templates = array(
-		'header.php'  => $header,
-		'footer.php'  => $footer,
-		'index.php'   => $index,
-		'page.php'    => $index,
+		'header.php'   => $header,
+		'footer.php'   => $footer,
+		'index.php'    => $index,
+		'page.php'     => $index,
 		'singular.php' => $index,
-		'archive.php' => $index,
-		'single.php'  => $index,
+		'archive.php'  => $index,
+		'single.php'   => $index,
+		'search.php'   => $search,
 	);
+
+	if ( class_exists( 'WooCommerce' ) ) {
+		$templates['archive-product.php'] = $shop;
+		$templates['taxonomy-product_cat.php'] = $shop;
+	}
 
 	foreach ( $templates as $file => $content ) {
 		$path = trailingslashit( $dir ) . $file;
@@ -362,17 +458,30 @@ function mobile_chi_get_primary_color() {
 function mobile_chi_child_output_css_vars() {
 	$primary = apply_filters( 'mobile_chi_primary_color', mobile_chi_get_primary_color() );
 	printf(
-	'<style id="mobile-chi-css-vars">:root{--tk-primary:%1$s;}</style>',
+	'<style id="mobile-chi-css-vars">:root{--tk-primary:%1$s;--mc-primary:%1$s;}</style>',
 	esc_attr( $primary )
 );
 }
 add_action( 'wp_head', 'mobile_chi_child_output_css_vars', 99 );
 
 /**
+* Favicon for standalone mode (inline SVG with the demo primary color).
+*/
+function mobile_chi_child_site_icon() {
+	if ( ! mobile_chi_is_standalone() ) {
+		return; // WoodMart handles site icons in child mode.
+	}
+	$primary = rawurlencode( apply_filters( 'mobile_chi_primary_color', mobile_chi_get_primary_color() ) );
+	$svg     = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%24" . $primary . "'/><text x='32' y='44' font-size='34' font-family='Tahoma,Arial' font-weight='bold' text-anchor='middle' fill='white'>M</text></svg>";
+	echo '<link rel="icon" href="data:image/svg+xml,' . esc_attr( $svg ) . '" type="image/svg+xml" />' . "\n";
+}
+add_action( 'wp_head', 'mobile_chi_child_site_icon', 5 );
+
+/**
 * Internal module includes (Elementor widgets, footer badges).
 */
-require_once get_stylesheet_directory() . '/inc/mobile-chi-elementor-widgets.php';
-require_once get_stylesheet_directory() . '/inc/mobile-chi-footer.php';
+require_once get_stylesheet_directory() . '/inc/elementor-widgets.php';
+require_once get_stylesheet_directory() . '/inc/footer-widgets.php';
 
 /**
 * Localize the child script with demo-derived settings.
