@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="theme-color" content="#435FCB">
+<title>دمو تیکا کالا وودمارت پلاس – قالب فروشگاهی موبایل</title>
+<meta name="description" content="قالب فروشگاهی راست‌چین موبایل الهام گرفته از دمو تیکا کالا (Woodmart Plus) – عرضه محصولات IT از برندهای معتبر">
+<link rel="icon" href="assets/img/logosite.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="home rtl wd-mobile-layout">
+
+<a class="wd-skip-link" href="#maincontent">عبور به محتوای اصلی</a>
+
+<!-- ═══════════ نوار بالایی (Top Bar) ═══════════ -->
+<div class="wd-topbar">
+  <div class="container wd-topbar-in">
+    <p class="wd-topbar-msg">🔥 عرضه محصولات IT از برندهای معتبر در فروشگاه تیکاکالا</p>
+    <ul class="wd-topbar-links">
+      <li><a href="#shop">فروشگاه</a></li>
+      <li><a href="#about">درباره ما</a></li>
+      <li><a href="#footer-contact">تماس با ما</a></li>
+    </ul>
+    <div class="wd-topbar-phone">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+      خط ویژه پشتیبانی <bdi>021-88699</bdi>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ هدر اصلی ═══════════ -->
+<header class="wd-header" id="wd-header">
+  <div class="container wd-header-row">
+
+    <!-- دکمه منوی موبایل + دسته‌بندی کالاها -->
+    <button class="wd-btn-cat" id="btn-categories" aria-expanded="false" aria-controls="cat-panel">
+      <span class="wd-burger" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="wd-btn-cat-txt">دسته بندی کالاها</span>
+      <svg class="wd-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <!-- لوگو -->
+    <a class="wd-logo" href="index.html" aria-label="تیکا کالا">
+      <img src="assets/img/logosite.svg" alt="لوگوی تیکا کالا" width="120" height="40">
+      <span class="wd-logo-text">تیکا<span>کالا</span></span>
+    </a>
+
+    <!-- جستجوی موبایل -->
+    <button class="wd-icon-btn" id="btn-search-open" aria-label="جستجو">
+      <img src="assets/img/searchIcon.svg" alt="" width="22" height="22">
+    </button>
+
+    <!-- اکانت / علاقه‌مندی / سبد -->
+    <div class="wd-header-actions">
+      <button class="wd-icon-btn wd-only-mobile" id="btn-account" aria-label="ورود">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+      </button>
+      <a class="wd-icon-btn" href="#wishlist" aria-label="علاقه مندی">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        <span class="wd-badge" data-count="0">0</span>
+      </a>
+      <button class="wd-icon-btn" id="btn-cart" aria-label="سبد خرید">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="wd-badge wd-badge-cart" data-count="0">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- سرچ بار (زیر هدر، فقط موبایل) -->
+  <div class="wd-searchbar">
+    <div class="container">
+      <form class="wd-search-form" role="search" action="#" method="get">
+        <input type="search" name="s" placeholder="جستجو در بین هزاران محصول ..." aria-label="جستجو">
+        <select name="cat" aria-label="دسته جستجو">
+          <option value="">همه دسته‌ها</option>
+          <option>موبایل</option>
+          <option>کالای دیجیتال</option>
+          <option>لب‌تاپ</option>
+          <option>ساعت هوشمند</option>
+          <option>خانه و آشپزخانه</option>
+        </select>
+        <button type="submit" aria-label="جستجو">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- منوی افقی (دسکتاپ/تبلت) -->
+  <nav class="wd-nav container" aria-label="ناوبری اصلی">
+    <ul class="wd-menu">
+      <li><a href="#" class="active">شروع</a></li>
+      <li><a href="#shop">فروشگاه</a></li>
+      <li><a href="#new-arrivals">جدیدترین‌ها</a></li>
+      <li><a href="#blog">مطالب وبسایت</a></li>
+      <li><a href="#about">درباره ما</a></li>
+      <li><a href="#footer-contact">تماس با ما</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══════════ پنل کشویی دسته‌بندی‌ها ═══════════ -->
+<div class="wd-drawer cat-drawer" id="cat-panel" aria-hidden="true">
+  <div class="wd-drawer-head">
+    <h3>دسته بندی کالاها</h3>
+    <button class="wd-drawer-close" data-close="cat" aria-label="بستن">×</button>
+  </div>
+  <ul class="wd-cat-list">
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> موبایل و ارتباطات</a>
+      <ul class="wd-submenu">
+        <li><a href="#">گوشی موبایل</a></li>
+        <li><a href="#">تبلت</a></li>
+        <li><a href="#">ساعت هوشمند</a></li>
+        <li><a href="#">هدفون و ایرپاد</a></li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> کالای دیجیتال</a>
+      <ul class="wd-submenu">
+        <li><a href="#">لب‌تاپ و اولترابوک</a></li>
+        <li><a href="#">کیس و قطعات</a></li>
+        <li><a href="#">مانیتور</a></li>
+        <li><a href="#">کنسول بازی</a></li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> میز و صندلی</a>
+      <ul class="wd-submenu">
+        <li><a href="#">میز های قهوه</a></li>
+        <li><a href="#">میز صبحانه</a></li>
+        <li><a href="#">میز ناهار خوری</a></li>
+        <li><a href="#">میز نوشتن</a></li>
+        <li><a href="#">میز بازی</a></li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> کاناپه و راحتی</a>
+      <ul class="wd-submenu">
+        <li><a href="#">زیر پایی</a></li>
+        <li><a href="#">تخت های روز</a></li>
+        <li><a href="#">صندلی استراحت</a></li>
+        <li><a href="#">کاناپه های کوچک</a></li>
+        <li><a href="#">صندلی راحتی</a></li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> سیستم های نگهداری</a>
+      <ul class="wd-submenu">
+        <li><a href="#">قفسه های نگهداری</a></li>
+        <li><a href="#">واحد های راهرو</a></li>
+        <li><a href="#">کابینت کفش</a></li>
+        <li><a href="#">قفسه و دراور</a></li>
+        <li><a href="#">کتابخانه</a></li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <a href="#shop"><img src="assets/img/icon.svg" alt="" width="18" height="18"> مبل کودک</a>
+      <ul class="wd-submenu">
+        <li><a href="#">اتاق خواب کودکان</a></li>
+        <li><a href="#">صندلی کودکان</a></li>
+        <li><a href="#">حمام کودکان</a></li>
+        <li><a href="#">نور پردازی کودکان</a></li>
+        <li><a href="#">منسوجات کودکان</a></li>
+      </ul>
+    </li>
+    <li><a href="#shop">خودرو، ابزار و تجهیزات صنعتی</a></li>
+    <li><a href="#shop">مد و پوشاک</a></li>
+    <li><a href="#shop">اسباب بازی، کودک و نوزاد</a></li>
+    <li><a href="#shop">خانه و آشپزخانه</a></li>
+    <li><a href="#shop">کتاب، لوازم التحریر و هنر</a></li>
+  </ul>
+</div>
+
+<!-- ═══════════ پنل کشویی سبد خرید ═══════════ -->
+<div class="wd-drawer cart-drawer" id="cart-panel" aria-hidden="true">
+  <div class="wd-drawer-head">
+    <h3>سبد خرید <span class="wd-drawer-count">(0 مورد)</span></h3>
+    <button class="wd-drawer-close" data-close="cart" aria-label="بستن">×</button>
+  </div>
+  <div class="wd-cart-body" id="cart-body">
+    <p class="wd-cart-empty">سبد خرید شما خالی است!</p>
+  </div>
+  <div class="wd-cart-foot">
+    <div class="wd-cart-total"><span>جمع کل:</span> <bdi class="wd-cart-sum">۰ تومان</bdi></div>
+    <a href="#" class="wd-btn wd-btn-primary wd-btn-block">ادامه فرآیند خرید</a>
+  </div>
+</div>
+
+<!-- ═══════════ پنل ورود / ثبت‌نام ═══════════ -->
+<div class="wd-drawer login-drawer" id="login-panel" aria-hidden="true">
+  <div class="wd-drawer-head">
+    <h3>ورود</h3>
+    <button class="wd-drawer-close" data-close="login" aria-label="بستن">×</button>
+  </div>
+  <form class="wd-login-form" action="#" method="post">
+    <p class="wd-form-field">
+      <label for="login-user">نام کاربری یا آدرس ایمیل <abbr title="الزامی">*</abbr></label>
+      <input type="text" id="login-user" required autocomplete="username">
+    </p>
+    <p class="wd-form-field">
+      <label for="login-pass">رمز عبور <abbr title="الزامی">*</abbr></label>
+      <input type="password" id="login-pass" required autocomplete="current-password">
+    </p>
+    <p class="wd-form-row">
+      <label class="wd-check"><input type="checkbox" name="remember"> مرا به خاطر بسپار</label>
+      <a href="#" class="wd-lost-pass">رمز عبور را فراموش کرده اید؟</a>
+    </p>
+    <button type="submit" class="wd-btn wd-btn-primary wd-btn-block">ورود</button>
+    <p class="wd-no-account">هنوز حساب کاربری ندارید؟ <a href="#register">ایجاد حساب کاربری</a></p>
+  </form>
+</div>
+
+<!-- ═══════════ لایه پس‌زمینه ═══════════ -->
+<div class="wd-overlay" id="drawer-overlay"></div>
+
+<!-- ═══════════ مودال جستجوی تمام صفحه ═══════════ -->
+<div class="wd-modal-search" id="search-modal" aria-hidden="true">
+  <button class="wd-modal-close" id="btn-search-close" aria-label="بستن">×</button>
+  <form class="wd-modal-form" action="#">
+    <input type="search" placeholder="جستجو ..." aria-label="جستجو">
+    <button type="submit" aria-label="جستجو">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </button>
+  </form>
+  <div class="container">
+    <h4>جستجوهای محبوب</h4>
+    <div class="wd-pop-tags">
+      <a href="#">موبایل</a><a href="#">ساعت</a><a href="#">کالای دیجیتال</a>
+      <a href="#">مد و پوشاک</a><a href="#">خانه و آشپزخانه</a><a href="#">کتاب</a>
+    </div>
+  </div>
+</div>
+
+<main id="maincontent">
+
+  <!-- ═══════════ اسلایدر بنر اصلی ═══════════ -->
+  <section class="wd-hero" aria-label="تخفیف‌ها و پیشنهادهای ویژه">
+    <div class="wd-slider" id="hero-slider" dir="ltr">
+      <div class="wd-slide is-active">
+        <a href="#shop"><img src="assets/img/bbe81ad433fc55b059db634c632e8dfb8772d83f_1644673616-min.jpg" alt="بنر تخفیف گوشی موبایل" width="820" height="328"></a>
+      </div>
+      <div class="wd-slide">
+        <a href="#shop"><img src="assets/img/f93e6cfd76a3ed10f1b0c1e48bf17782b4cf3896_1644673599-min.jpg" alt="بنر لوازم جانبی" width="820" height="328"></a>
+      </div>
+      <div class="wd-slide">
+        <a href="#new-arrivals"><img src="assets/img/4444-min.jpg" alt="بنر جدیدترین محصولات" width="925" height="588"></a>
+      </div>
+      <button class="wd-slider-arrow prev" id="slide-prev" aria-label="اسلاید قبلی">‹</button>
+      <button class="wd-slider-arrow next" id="slide-next" aria-label="اسلاید بعدی">›</button>
+      <div class="wd-slider-dots" id="slide-dots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ بنرهای تبلیغاتی کوچک ═══════════ -->
+  <section class="container wd-banner-grid">
+    <a class="wd-mini-banner" href="#shop"><img src="assets/img/1-min-1.png" alt="بنر لپ‌تاپ" loading="lazy"></a>
+    <a class="wd-mini-banner" href="#shop"><img src="assets/img/2-min-1.png" alt="بنر ساعت هوشمند" loading="lazy"></a>
+  </section>
+
+  <!-- ═══════════ خدمات شش‌گانه ═══════════ -->
+  <section class="container wd-services">
+    <div class="wd-service"><img src="assets/img/SafePayment.svg" alt="" width="40" height="40"><div><b>پرداخت آنلاین امن</b><span>پرداخت از طریق کلیه کارت ها</span></div></div>
+    <div class="wd-service"><img src="assets/img/FastSending.svg" alt="" width="40" height="40"><div><b>ارسال سریع</b><span>ارسال در کوتاه ترین زمان</span></div></div>
+    <div class="wd-service"><img src="assets/img/Guarantee.svg" alt="" width="40" height="40"><div><b>ضمانت بازگشت کالا</b><span>ضمانت تا حداکثر 7 روز</span></div></div>
+    <div class="wd-service"><img src="assets/img/Calling.svg" alt="" width="40" height="40"><div><b>پشتیبانی سریع</b><span>پشتیبانی و مشاوره فروش</span></div></div>
+    <div class="wd-service"><img src="assets/img/Gifts.svg" alt="" width="40" height="40"><div><b>ارسال هدیه</b><span>ارسال بصورت کادویی</span></div></div>
+  </section>
+
+  <!-- ═══════════ حراج‌های شگفت‌انگیز (محصولات) ═══════════ -->
+  <section class="container wd-section" id="shop">
+    <header class="wd-sec-head">
+      <h2 class="wd-sec-title"><span class="wd-title-icon">%</span> شگفت‌انگیزها</h2>
+      <a class="wd-see-all" href="#">مشاهده همه <span>‹</span></a>
+    </header>
+    <div class="wd-carousel" data-carousel>
+      <div class="wd-track products-track">
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-sale">حراج!</span>
+            <a href="#"><img src="assets/img/01-min.png" alt="ساعت هوشمند سامسونگ" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمند سامسونگ</a></h3>
+            <div class="wd-prod-rating"><span>★★★★★</span><small>(۲)</small></div>
+            <div class="wd-prod-price">
+              <del>۶۵,۰۰۰</del>
+              <ins><bdi>49,000</bdi> تومان</ins>
+            </div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="ساعت هوشمند سامسونگ" data-price="49000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/02-min-1.png" alt="ساعت هوشمند سامسونگ a1" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمند سامسونگ a1</a></h3>
+            <div class="wd-prod-rating"><span>★★★★☆</span><small>(۵)</small></div>
+            <div class="wd-prod-price"><ins><bdi>90,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="ساعت هوشمند سامسونگ a1" data-price="90000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/04-min-1.png" alt="ساعت هوشمند ش43" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمند ش43</a></h3>
+            <div class="wd-prod-rating"><span>★★★☆☆</span><small>(۱)</small></div>
+            <div class="wd-prod-price"><ins><bdi>80,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="ساعت هوشمند ش43" data-price="80000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/02-min.png" alt="ساعت هوشمند هاوایی" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمند هاوایی</a></h3>
+            <div class="wd-prod-rating"><span>★★★★☆</span><small>(۳)</small></div>
+            <div class="wd-prod-price"><ins><bdi>89,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="ساعت هوشمند هاوایی" data-price="89000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/05-min-1.png" alt="ساعت هوشمند a21" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمندa21</a></h3>
+            <div class="wd-prod-rating"><span>★★★★★</span><small>(۸)</small></div>
+            <div class="wd-prod-price"><ins><bdi>63,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="ساعت هوشمندa21" data-price="63000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/3.png" alt="گوشی موبایل سامسونگ a12 -56A" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">موبایل</span>
+            <h3 class="wd-prod-title"><a href="#">گوشی موبایل سامسونگ a12 -56A</a></h3>
+            <div class="wd-prod-rating"><span>★★★★☆</span><small>(۴)</small></div>
+            <div class="wd-prod-price"><ins><bdi>49,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="گوشی موبایل سامسونگ a12 -56A" data-price="49000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ بنر عریض وسط ═══════════ -->
+  <section class="container wd-wide-banner">
+    <a href="#shop"><img src="assets/img/33-min.png" alt="بنر تخفیف ویژه آخر هفته" loading="lazy"></a>
+  </section>
+
+  <!-- ═══════════ پرفروش‌ترین محصولات ═══════════ -->
+  <section class="container wd-section" id="bestseller">
+    <header class="wd-sec-head">
+      <h2 class="wd-sec-title"><span class="wd-title-icon">★</span> پرفروش ترین</h2>
+      <a class="wd-see-all" href="#">مشاهده همه <span>‹</span></a>
+    </header>
+    <div class="wd-carousel" data-carousel>
+      <div class="wd-track products-track">
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/2222-min.png" alt="گوشی موبایل سامسونگ مدل Galaxy A32 5G" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">موبایل</span>
+            <h3 class="wd-prod-title"><a href="#">گوشی موبایل سامسونگ مدل Galaxy A32 5G</a></h3>
+            <div class="wd-prod-rating"><span>★★★★★</span><small>(۱۲)</small></div>
+            <div class="wd-prod-price"><ins><bdi>89,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="گوشی سامسونگ Galaxy A32 5G" data-price="89000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/44-min-1.png" alt="گوشی موبایل شیائومی مدل POCO F3 5G" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">موبایل</span>
+            <h3 class="wd-prod-title"><a href="#">گوشی موبایل شیائومی مدل POCO F3 5G</a></h3>
+            <div class="wd-prod-rating"><span>★★★★☆</span><small>(۷)</small></div>
+            <div class="wd-prod-price"><ins><bdi>65,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="گوشی شیائومی POCO F3 5G" data-price="65000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/22-1.png" alt="گوشی موبایل سامسونگ مدل Galaxy A32 21G" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">موبایل</span>
+            <h3 class="wd-prod-title"><a href="#">گوشی موبایل سامسونگ مدل Galaxy A32 21G</a></h3>
+            <div class="wd-prod-rating"><span>★★★☆☆</span><small>(۲)</small></div>
+            <div class="wd-prod-price"><ins><bdi>78,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+              <li>شبکه های ارتباطی:4G، 3G، 2G</li>
+            </ul>
+            <button class="wd-add-cart" data-name="گوشی سامسونگ Galaxy A32 21G" data-price="78000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/6.png" alt="گوشی موبایل سامسونگ مدل Galaxy A32" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">موبایل</span>
+            <h3 class="wd-prod-title"><a href="#">گوشی موبایل سامسونگ مدل Galaxy A32</a></h3>
+            <div class="wd-prod-rating"><span>★★★★☆</span><small>(۹)</small></div>
+            <div class="wd-prod-price"><ins><bdi>44,000</bdi> تومان</ins></div>
+            <p class="wd-prod-desc">گوشی موبایل Galaxy A32 با رم 6 گیگابایتی و حافظه داخلی 128 گیگابایت روانه بازار شده است...</p>
+            <button class="wd-add-cart" data-name="گوشی سامسونگ Galaxy A32" data-price="44000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+        <article class="wd-product">
+          <div class="wd-prod-img">
+            <span class="wd-label wd-label-new">جدید</span>
+            <a href="#"><img src="assets/img/0017032_-min.jpeg" alt="ساعت هوشمند اپل واچ سری ۸ سایز ۴۵ میلی‌متری" loading="lazy" width="250" height="250"></a>
+            <div class="wd-prod-hover">
+              <a href="#" class="wd-hbtn wd-hbtn-wish" aria-label="افزودن به علاقه مندی"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-cmp" aria-label="مقایسه"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg></a>
+              <a href="#" class="wd-hbtn wd-hbtn-view" aria-label="مشاهده سریع"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></a>
+            </div>
+          </div>
+          <div class="wd-prod-info">
+            <span class="wd-prod-cat">ساعت هوشمند</span>
+            <h3 class="wd-prod-title"><a href="#">ساعت هوشمند اپل واچ سری ۸ سایز ۴۵ میلی‌متری</a></h3>
+            <div class="wd-prod-rating"><span>★★★★★</span><small>(۱۵)</small></div>
+            <div class="wd-prod-price"><ins><bdi>15,600,000</bdi> تومان</ins></div>
+            <ul class="wd-prod-attrs">
+              <li>حافظه داخلی:128 گیگابایت</li>
+              <li>اندازه صفحه نمایش:6.0 اینچ و بزرگتر</li>
+            </ul>
+            <button class="wd-add-cart" data-name="اپل واچ سری ۸ سایز ۴۵" data-price="15600000">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ دسته‌بندی‌های منتخب ═══════════ -->
+  <section class="container wd-section">
+    <header class="wd-sec-head">
+      <h2 class="wd-sec-title">دسته‌بندی‌های منتخب</h2>
+    </header>
+    <div class="wd-cats-grid">
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009764_250-pwh4lgkpv4luzn7ph97fuhpjovh116dwlpe6cx4p5u-min.png" alt="موبایل" loading="lazy"><span>موبایل</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009756_250-pwh4ll9wtasalp0vpt8koyiunstv3nwkacnlraxqaq-min.png" alt="لپ‌تاپ" loading="lazy"><span>لب‌تاپ</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009732_250-pwh4ln5l6yuv8wy5eu1tty1rukklj240ylykpuuxya-min.png" alt="ساعت هوشمند" loading="lazy"><span>ساعت</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009730_250-pwh4lpz3rgyq7qu1yd9pjfc5mq6p65f7yzx15oqrfm-min.png" alt="هدفون" loading="lazy"><span>هدفون</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009728_-_250-pwh4ltqgit3vi6olcew7tee009o60xu5biiz2sl6qq-min.png" alt="کامپیوتر" loading="lazy"><span>کامپیوتر</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009720_250-pwhgpg1rupfs4dx5mpntdh0ewuk1b37ujmrxvaov36-min.png" alt="دوربین" loading="lazy"><span>دوربین</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009721_-_250-pwhgphxg8dicrlufbqh2igjc3marqhfb7w2wtum2qq-min.png" alt="کنسول بازی" loading="lazy"><span>گیمینگ</span></a>
+      <a class="wd-cat-item" href="#shop"><img src="assets/img/0009716_250-pwhgpjt4m1kxetrp0rabng29ae1i5vmrw5dvsejaea-min.png" alt="لوازم جانبی" loading="lazy"><span>جانبی</span></a>
+    </div>
+  </section>
+
+  <!-- ═══════════ منتخب جدیدترین‌ها ═══════════ -->
+  <section class="container wd-section" id="new-arrivals">
+    <header class="wd-sec-head">
+      <div>
+        <h2 class="wd-sec-title">منتخب جدیدترین ها</h2>
+        <p class="wd-sec-sub">لیست کالاهایی که جدیدا افزوده شده اند</p>
+      </div>
+      <a class="wd-see-all" href="#">مشاهده همه <span>‹</span></a>
+    </header>
+    <div class="wd-grid-products">
+
+      <article class="wd-product">
+        <div class="wd-prod-img">
+          <span class="wd-tag-side">محصول جدید</span>
+          <a href="#"><img src="assets/img/0016999_-mastercase-elite-500-min.jpeg" alt="کیس کامپیوتر کولرمستر" loading="lazy" width="250" height="250"></a>
+        </div>
+        <div class="wd-prod-info">
+          <h3 class="wd-prod-title"><a href="#">کیس کامپیوتر کولرمستر مدل MASTE..</a></h3>
+          <div class="wd-prod-price"><ins><bdi>1,580,000</bdi> تومان</ins></div>
+          <button class="wd-add-cart" data-name="کیس کولرمستر MASTE" data-price="1580000">افزودن به سبد خرید</button>
+        </div>
+      </article>
+
+      <article class="wd-product">
+        <div class="wd-prod-img">
+          <span class="wd-tag-side">محصول جدید</span>
+          <a href="#"><img src="assets/img/0016994_-xvision-xk2030h_130-min.jpeg" alt="مانیتور ۲۰ اینچی ایکس ویژن" loading="lazy" width="250" height="250"></a>
+        </div>
+        <div class="wd-prod-info">
+          <h3 class="wd-prod-title"><a href="#">مانیتور ۲۰ اینچی ایکس ویژن مدل Xvision XK2030H</a></h3>
+          <div class="wd-prod-price"><ins><bdi>3,490,000</bdi> تومان</ins></div>
+          <button class="wd-add-cart" data-name="مانیتور ایکس ویژن XK2030H" data-price="3490000">افزودن به سبد خرید</button>
+        </div>
+      </article>
+
+      <article class="wd-product is-outofstock">
+        <div class="wd-prod-img">
+          <span class="wd-tag-side">محصول جدید</span>
+          <a href="#"><img src="assets/img/0016981_-lenovo-legion-5-i7-11800h-32gb-1tb-ssd-8gb-3070_130-min.jpeg" alt="نوت‌بوک ۱۵ اینچ لنوو Legion 5" loading="lazy" width="250" height="250"></a>
+          <span class="wd-stock-out">نا موجود</span>
+        </div>
+        <div class="wd-prod-info">
+          <h3 class="wd-prod-title"><a href="#">نوت‌بوک ۱۵ اینچ لنوو مدل Lenovo Legion 5</a></h3>
+          <div class="wd-prod-price"><span class="wd-out-msg">این محصول در حال حاضر موجود نیست</span></div>
+          <button class="wd-add-cart" disabled>افزودن به سبد خرید</button>
+        </div>
+      </article>
+
+      <article class="wd-product">
+        <div class="wd-prod-img">
+          <span class="wd-tag-side">محصول جدید</span>
+          <a href="#"><img src="assets/img/0016969_-lenovo-ideapad-3-r7-8gb-1tb-128ssd-2gb-radeon-fhd_130-min.png" alt="نوت‌بوک لنوو IdeaPad" loading="lazy" width="250" height="250"></a>
+        </div>
+        <div class="wd-prod-info">
+          <h3 class="wd-prod-title"><a href="#">نوت‌بوک لنوو مدل Lenovo IdeaPa</a></h3>
+          <div class="wd-prod-price"><ins><bdi>15,600,000</bdi> تومان</ins></div>
+          <button class="wd-add-cart" data-name="نوت‌بوک لنوو IdeaPad" data-price="15600000">افزودن به سبد خرید</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ برندهای منتخب ═══════════ -->
+  <section class="container wd-section">
+    <header class="wd-sec-head">
+      <div>
+        <h2 class="wd-sec-title">برندهای منتخب</h2>
+        <p class="wd-sec-sub">برندهای نام‌آشنا در فروشگاه وودمارت پلاس</p>
+      </div>
+    </header>
+    <div class="wd-brands-carousel" data-carousel>
+      <div class="wd-track brands-track">
+        <a href="#" class="wd-brand"><img src="assets/img/0014459_Xbox-min.png" alt="Xbox" loading="lazy"></a>
+        <a href="#" class="wd-brand"><img src="assets/img/0014460_Asus-min.png" alt="Asus" loading="lazy"></a>
+        <a href="#" class="wd-brand"><img src="assets/img/0014461_Crucial-min.png" alt="Crucial" loading="lazy"></a>
+        <a href="#" class="wd-brand"><img src="assets/img/4-min.png" alt="Samsung" loading="lazy"></a>
+        <a href="#" class="wd-brand"><img src="assets/img/2-min-1.png" alt="Apple" loading="lazy"></a>
+        <a href="#" class="wd-brand"><img src="assets/img/1-min-1.png" alt="Lenovo" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ مطالب وبسایت (بلاگ) ═══════════ -->
+  <section class="container wd-section" id="blog">
+    <header class="wd-sec-head">
+      <h2 class="wd-sec-title">مطالب وبسایت</h2>
+      <a class="wd-see-all" href="#">مشاهده همه <span>‹</span></a>
+    </header>
+    <div class="wd-carousel" data-carousel>
+      <div class="wd-track posts-track">
+
+        <article class="wd-post">
+          <div class="wd-post-img">
+            <a href="#"><img src="assets/img/post-5-min.jpg" alt="انتخاب سیستم عامل گوشی" loading="lazy" width="300" height="190"></a>
+            <span class="wd-post-date"><b>03</b><i>سپتامبر</i></span>
+          </div>
+          <div class="wd-post-info">
+            <span class="wd-post-cat">تکنولوژی</span>
+            <h3 class="wd-post-title"><a href="#">انتخاب سیستم عامل گوشی</a></h3>
+            <p class="wd-post-meta">ارسال توسط <a href="#">مدیر</a> · نوامبر 21, 2022</p>
+          </div>
+        </article>
+
+        <article class="wd-post">
+          <div class="wd-post-img">
+            <a href="#"><img src="assets/img/321-min.jpg" alt="فلش مموری خوب" loading="lazy" width="300" height="190"></a>
+            <span class="wd-post-date"><b>03</b><i>سپتامبر</i></span>
+          </div>
+          <div class="wd-post-info">
+            <span class="wd-post-cat">تکنولوژی</span>
+            <h3 class="wd-post-title"><a href="#">فلش مموری خوب</a></h3>
+            <p class="wd-post-meta">ارسال توسط <a href="#">مدیر</a> · نوامبر 21, 2022</p>
+          </div>
+        </article>
+
+        <article class="wd-post">
+          <div class="wd-post-img">
+            <a href="#"><img src="assets/img/post2-min.jpg" alt="آموزش تبلیغات و برند" loading="lazy" width="300" height="190"></a>
+            <span class="wd-post-date"><b>03</b><i>سپتامبر</i></span>
+          </div>
+          <div class="wd-post-info">
+            <span class="wd-post-cat">تکنولوژی</span>
+            <h3 class="wd-post-title"><a href="#">آموزش تبلیغات و برند</a></h3>
+            <p class="wd-post-meta">ارسال توسط <a href="#">مدیر</a> · نوامبر 21, 2022</p>
+          </div>
+        </article>
+
+        <article class="wd-post">
+          <div class="wd-post-img">
+            <a href="#"><img src="assets/img/post1-min.jpg" alt="روش استفاده از ایرپاد" loading="lazy" width="300" height="190"></a>
+            <span class="wd-post-date"><b>03</b><i>سپتامبر</i></span>
+          </div>
+          <div class="wd-post-info">
+            <span class="wd-post-cat">تکنولوژی</span>
+            <h3 class="wd-post-title"><a href="#">روش استفاده از ایرپاد</a></h3>
+            <p class="wd-post-meta">ارسال توسط <a href="#">مدیر</a> · نوامبر 21, 2022</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ فروشنده‌های منتخب ═══════════ -->
+  <section class="container wd-section" id="about">
+    <header class="wd-sec-head">
+      <div>
+        <h2 class="wd-sec-title">فروشنده های منتخب</h2>
+        <p class="wd-sec-sub">فروشنده های منتخب وودمارت پلاس</p>
+      </div>
+    </header>
+    <div class="wd-sellers-grid">
+      <div class="wd-seller"><img src="assets/img/businessAssociation-pwh7q5g50mglu2lwplahlugurdzpb2h9cwja7j7npu-min.png" alt="نماد اتحادیه کسب و کارهای اینترنتی" loading="lazy"><span>اتحادیه کسب و کارها</span></div>
+      <div class="wd-seller"><img src="assets/img/enamad_icon_text_color_blue_1024-pwh7q89nl4kgswht94idbbr8jjlsy5sgdahqnd3h62-min.png" alt="نماد اعتماد الکترونیکی" loading="lazy"><span>اعتماد الکترونیکی</span></div>
+      <div class="wd-seller"><img src="assets/img/samandehi-pwh7qb365mobrqdpsnq90t1mbp7wl93ndog736zane-min.png" alt="نماد ساماندهی" loading="lazy"><span>ساماندهی</span></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════ فوتر ═══════════ -->
+<footer class="wd-footer" id="footer-contact">
+  <div class="container wd-footer-cols">
+
+    <div class="wd-footer-col">
+      <a class="wd-logo wd-footer-logo" href="index.html"><img src="assets/img/logosite.svg" alt="تیکا کالا" width="110" height="36"></a>
+      <p>فروشگاه اینترنتی تیکا کالا، عرضه‌کننده محصولات IT از برندهای معتبر با ضمانت اصالت کالا و ارسال سریع به سراسر کشور.</p>
+      <div class="wd-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.9 4 3c.7.4 1.2.2 1.4-.7L21.8 4.5c.3-1.1-.4-1.6-1.1-1.3L2.9 10.6c-1 .4-1 1-.2 1.3l4.6 1.4 7.2-4.5c.6-.4 1.1-.2.7.3z"/></svg></a>
+        <a href="#" aria-label="Whatsapp"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1a13 13 0 0 1-6.9-6c-.5-.9-.8-1.9-.8-2.7 0-.9.5-1.6 1-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2 0 .4-.1.6l-.4.5c-.2.2-.3.3-.1.6a9 9 0 0 0 4 3.4c.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3s0 .8-.1 1.4z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="wd-footer-col">
+      <h4>شرایط و قوانین</h4>
+      <p class="wd-terms">توجه داشته باشید کلیه اصول و رویه‌ها منطبق با قوانین جمهوری اسلامی ایران، قانون تجارت الکترونیک و قانون حمایت از حقوق مصرف کننده است و متعاقبا کاربر نیز موظف به رعایت قوانین مرتبط با کاربر است.</p>
+    </div>
+
+    <div class="wd-footer-col">
+      <h4>اطلاعات تماس</h4>
+      <ul class="wd-footer-links">
+        <li><a href="#">اتاق خبر دیجی کالا</a></li>
+        <li><a href="#">فروش در دیجی کالا</a></li>
+        <li><a href="#">فرصت های کاری دیجی کالا</a></li>
+        <li><a href="#">تماس با دیجی کالا</a></li>
+        <li><a href="#">درباره دیجی کالا</a></li>
+      </ul>
+    </div>
+
+    <div class="wd-footer-col">
+      <h4>دسترسی سریع</h4>
+      <ul class="wd-footer-links">
+        <li><a href="#about">درباره ما</a></li>
+        <li><a href="#footer-contact">تماس با ما</a></li>
+        <li><a href="#">شرایط و قوانین</a></li>
+        <li><a href="#shop">فروشگاه</a></li>
+        <li><a href="#blog">مطالب وبسایت</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="wd-footer-bottom">
+    <div class="container wd-footer-bottom-in">
+      <p>تمامی حقوق مادی و معنوی این سایت متعلق به <b>تیکاکالا</b> می باشد.</p>
+      <p class="wd-footer-phone">خط ویژه پشتیبانی : <bdi>0212124</bdi></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ نوار ناوبری پایین (موبایل) ═══════════ -->
+<nav class="wd-bottom-nav" aria-label="ناوبری پایین">
+  <a href="index.html" class="active">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+    <span>خانه</span>
+  </a>
+  <a href="#categories" id="bottom-cat">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    <span>دسته‌ها</span>
+  </a>
+  <a href="#wishlist" id="bottom-wish">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    <span>علاقه‌مندی</span>
+    <i class="wd-badge wd-badge-pin" data-count="0">0</i>
+  </a>
+  <a href="#" id="bottom-cart">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1.4"/><circle cx="19" cy="21" r="1.4"/><path d="M2 2h3l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+    <span>سبد خرید</span>
+    <i class="wd-badge wd-badge-pin wd-badge-cart" data-count="0">0</i>
+  </a>
+  <a href="#" id="bottom-account">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+    <span>حساب کاربری</span>
+  </a>
+</nav>
+
+<!-- دکمه بازگشت به بالا -->
+<button class="wd-backtop" id="backtop" aria-label="بازگشت به بالا">↑</button>
+
+<!-- اعلان افزودن به سبد -->
+<div class="wd-toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

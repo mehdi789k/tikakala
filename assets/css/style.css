@@ -1,0 +1,330 @@
+/* ═══════ قالب موبایل تیکا کالا (Woodmart Plus) — راست‌چین فارسی ═══════ */
+:root{
+  --wd-primary-color:#435FCB;
+  --wd-primary-hover:#4993DD;
+  --wd-title-color:#242424;
+  --wd-text-color:#565656;
+  --entities-color:#424242;
+  --gray-100:#f7f8fa;--gray-200:#eef0f4;--gray-300:#d9dbe1;--gray-500:#8b8f98;
+  --sale-color:#e74c3c;--new-color:#27ae60;
+  --bg-body:#f5f6f8;--radius:12px;
+  --shadow-sm:0 1px 4px rgba(30,40,90,.07);
+  --shadow-md:0 6px 22px rgba(30,40,90,.12);
+  --bottom-nav-h:60px;
+  --font-main:"YekanBakhFaNum","Vazirmatn","IRANSans",Tahoma,Arial,sans-serif;
+}
+@import url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css");
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-main);direction:rtl;text-align:right;font-size:14px;line-height:1.7;color:var(--wd-text-color);background:var(--bg-body);padding-bottom:calc(var(--bottom-nav-h) + env(safe-area-inset-bottom))}
+img{max-width:100%;height:auto;display:block;border:0}
+a{color:inherit;text-decoration:none;transition:color .2s}
+a:hover{color:var(--wd-primary-color)}
+ul{margin:0;padding:0;list-style:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select{font-family:inherit;font-size:14px}
+bdi{unicode-bidi:isolate}
+del{color:var(--gray-500);font-size:90%}
+ins{text-decoration:none}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:14px}
+.wd-skip-link{position:absolute;right:-9999px;top:0;background:#fff;padding:8px 14px;z-index:200}
+.wd-skip-link:focus{right:8px}
+
+/* نوار بالایی */
+.wd-topbar{background:var(--wd-primary-color);color:#fff;font-size:12px}
+.wd-topbar-in{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:34px;flex-wrap:wrap}
+.wd-topbar-msg{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wd-topbar-links{display:none;gap:16px}
+.wd-topbar-links a{color:#fff;opacity:.9}
+.wd-topbar-phone{display:none;align-items:center;gap:5px;white-space:nowrap}
+.wd-topbar-phone bdi{font-weight:700;letter-spacing:.5px}
+
+/* هدر */
+.wd-header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+.wd-header-row{display:flex;align-items:center;gap:8px;min-height:56px}
+.wd-btn-cat{display:flex;align-items:center;gap:7px;color:var(--wd-title-color);font-weight:600;font-size:13px;padding:8px 4px}
+.wd-burger{display:inline-flex;flex-direction:column;gap:3px}
+.wd-burger i{width:18px;height:2px;background:var(--wd-primary-color);border-radius:2px;display:block;transition:.3s}
+.wd-btn-cat[aria-expanded="true"] .wd-burger i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.wd-btn-cat[aria-expanded="true"] .wd-burger i:nth-child(2){opacity:0}
+.wd-btn-cat[aria-expanded="true"] .wd-burger i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.wd-chev{transition:transform .25s;color:var(--gray-500)}
+.wd-btn-cat[aria-expanded="true"] .wd-chev{transform:rotate(180deg)}
+.wd-logo{display:flex;align-items:center;gap:6px;margin-inline:auto}
+.wd-logo img{height:34px;width:auto}
+.wd-logo-text{font-size:17px;font-weight:800;color:var(--wd-title-color)}
+.wd-logo-text span{color:var(--wd-primary-color)}
+.wd-icon-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--wd-title-color);transition:background .2s}
+.wd-icon-btn:hover{background:var(--gray-100)}
+.wd-badge{position:absolute;top:2px;left:0;min-width:16px;height:16px;line-height:16px;border-radius:9px;background:var(--wd-primary-color);color:#fff;font-size:10px;text-align:center;padding:0 3px;font-style:normal;transition:transform .2s}
+.wd-badge[data-count="0"]{display:none}
+.wd-header-actions{display:flex;align-items:center;gap:2px}
+
+/* سرچ بار */
+.wd-searchbar{padding:0 0 10px}
+.wd-search-form{display:flex;background:var(--gray-100);border:2px solid var(--gray-200);border-radius:30px;overflow:hidden}
+.wd-search-form input[type=search]{flex:1;min-width:0;border:0;background:transparent;padding:10px 14px;outline:none;color:var(--wd-title-color)}
+.wd-search-form select{border:0;background:transparent;border-inline-start:1px solid var(--gray-300);color:var(--gray-500);padding:0 8px;max-width:110px;outline:none;-webkit-appearance:none;appearance:none;font-size:12px}
+.wd-search-form button{background:var(--wd-primary-color);width:46px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.wd-search-form button:hover{background:var(--wd-primary-hover)}
+
+/* منوی افقی دسکتاپ */
+.wd-nav{display:none}
+.wd-menu{display:flex;gap:4px}
+.wd-menu a{display:block;padding:12px 14px;font-weight:600;font-size:14px;color:var(--wd-title-color);border-bottom:2px solid transparent}
+.wd-menu a.active,.wd-menu a:hover{color:var(--wd-primary-color);border-color:var(--wd-primary-color)}
+
+/* پنل‌های کشویی */
+.wd-overlay{position:fixed;inset:0;background:rgba(20,25,45,.5);opacity:0;visibility:hidden;transition:.3s;z-index:140}
+.wd-overlay.show{opacity:1;visibility:visible}
+.wd-drawer{position:fixed;top:0;bottom:0;right:0;width:min(320px,88vw);background:#fff;z-index:150;transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.7,.3,1);display:flex;flex-direction:column;box-shadow:-4px 0 30px rgba(0,0,0,.15)}
+.wd-drawer.open{transform:translateX(0)}
+.wd-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--gray-200);background:var(--wd-primary-color);color:#fff}
+.wd-drawer-head h3{margin:0;font-size:15px;font-weight:700}
+.wd-drawer-count{font-weight:400;font-size:12px;opacity:.85}
+.wd-drawer-close{color:#fff;font-size:26px;line-height:1;width:34px;height:34px;border-radius:50%}
+.wd-drawer-close:hover{background:rgba(255,255,255,.15)}
+.wd-cat-list{overflow-y:auto;flex:1;padding:8px 0}
+.wd-cat-list>li>a{display:flex;align-items:center;gap:9px;padding:11px 16px;color:var(--entities-color);font-weight:600;font-size:13.5px}
+.wd-cat-list>li>a:hover{background:var(--gray-100);color:var(--wd-primary-color)}
+.wd-cat-list .wd-submenu{display:none;background:var(--gray-100);padding:6px 0;margin:0 16px 6px;border-radius:10px}
+.wd-cat-list li.expanded .wd-submenu{display:block}
+.wd-submenu a{display:block;padding:7px 16px 7px 10px;font-size:12.5px;color:var(--gray-500)}
+.wd-submenu a:hover{color:var(--wd-primary-color)}
+.wd-cat-list .has-sub>a::after{content:"\2039";margin-inline-start:auto;font-size:18px;color:var(--gray-300);transition:transform .25s;transform:rotate(-90deg)}
+.wd-cat-list .has-sub.expanded>a::after{transform:rotate(-180deg)}
+
+/* سبد */
+.wd-cart-body{flex:1;overflow-y:auto;padding:14px 16px}
+.wd-cart-empty{text-align:center;color:var(--gray-500);padding:40px 0}
+.wd-cart-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px dashed var(--gray-200)}
+.wd-cart-item img{width:58px;height:58px;object-fit:contain;background:#fff;border:1px solid var(--gray-200);border-radius:8px}
+.wd-cart-item-info{flex:1;min-width:0}
+.wd-cart-item-info h4{margin:0 0 3px;font-size:12.5px;color:var(--wd-title-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wd-cart-item-price{font-size:12px;color:var(--wd-primary-color);font-weight:700}
+.wd-cart-qty{display:inline-flex;align-items:center;border:1px solid var(--gray-300);border-radius:20px;margin-top:4px}
+.wd-cart-qty button{width:24px;height:24px;font-size:14px;color:var(--gray-500)}
+.wd-cart-qty span{min-width:22px;text-align:center;font-size:12px}
+.wd-cart-remove{color:var(--sale-color);font-size:16px;align-self:flex-start}
+.wd-cart-foot{padding:14px 16px;border-top:1px solid var(--gray-200);background:var(--gray-100)}
+.wd-cart-total{display:flex;justify-content:space-between;font-weight:700;color:var(--wd-title-color);margin-bottom:10px}
+.wd-cart-sum{color:var(--wd-primary-color)}
+
+/* فرم ورود */
+.wd-login-form{padding:18px 16px;display:flex;flex-direction:column;gap:14px}
+.wd-form-field label{display:block;margin-bottom:5px;font-weight:600;color:var(--wd-title-color);font-size:13px}
+.wd-form-field abbr{color:var(--sale-color);text-decoration:none}
+.wd-form-field input{width:100%;border:2px solid var(--gray-200);border-radius:10px;padding:10px 12px;outline:none;transition:border-color .2s;background:var(--gray-100)}
+.wd-form-field input:focus{border-color:var(--wd-primary-color);background:#fff}
+.wd-form-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.wd-check{display:flex;align-items:center;gap:5px;color:var(--gray-500)}
+.wd-lost-pass{color:var(--wd-primary-color)}
+.wd-no-account{text-align:center;font-size:12.5px;color:var(--gray-500)}
+.wd-no-account a{color:var(--wd-primary-color);font-weight:700}
+.wd-btn{display:inline-block;text-align:center;border-radius:10px;padding:11px 18px;font-weight:700;font-size:13.5px;transition:.2s}
+.wd-btn-primary{background:var(--wd-primary-color);color:#fff}
+.wd-btn-primary:hover{background:var(--wd-primary-hover);color:#fff}
+.wd-btn-block{display:block;width:100%}
+
+/* مودال جستجو */
+.wd-modal-search{position:fixed;inset:0;background:#fff;z-index:160;padding:70px 16px 20px;transform:translateY(-100%);transition:transform .3s;overflow-y:auto}
+.wd-modal-search.open{transform:translateY(0)}
+.wd-modal-close{position:absolute;top:14px;right:16px;font-size:32px;color:var(--wd-title-color);width:44px;height:44px;border-radius:50%}
+.wd-modal-close:hover{background:var(--gray-100)}
+.wd-modal-form{display:flex;max-width:640px;margin:0 auto 26px;border:2px solid var(--wd-primary-color);border-radius:32px;overflow:hidden}
+.wd-modal-form input{flex:1;border:0;padding:13px 18px;outline:none;font-size:15px}
+.wd-modal-form button{background:var(--wd-primary-color);width:56px;display:flex;align-items:center;justify-content:center}
+.wd-modal-search h4{text-align:center;color:var(--wd-title-color);margin:0 0 12px}
+.wd-pop-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.wd-pop-tags a{background:var(--gray-100);border:1px solid var(--gray-200);padding:6px 14px;border-radius:20px;font-size:12.5px;color:var(--entities-color)}
+.wd-pop-tags a:hover{background:var(--wd-primary-color);color:#fff;border-color:var(--wd-primary-color)}
+
+/* اسلایدر */
+.wd-hero{padding:12px 0 0}
+.wd-slider{position:relative;border-radius:var(--radius);overflow:hidden;margin-inline:14px;box-shadow:var(--shadow-sm);background:#fff;touch-action:pan-y}
+.wd-slide{display:none}
+.wd-slide.is-active{display:block;animation:wdFade .6s}
+@keyframes wdFade{from{opacity:.25}to{opacity:1}}
+.wd-slide img{width:100%;height:clamp(140px,32vw,300px);object-fit:cover}
+.wd-slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.85);color:var(--wd-title-color);font-size:22px;line-height:1;display:none;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);z-index:5}
+.wd-slider-arrow.prev{left:8px}.wd-slider-arrow.next{right:8px}
+.wd-slider-dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:5}
+.wd-slider-dots button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);transition:.25s}
+.wd-slider-dots button.on{background:#fff;width:20px;border-radius:5px}
+
+/* بنرهای کوچک */
+.wd-banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.wd-mini-banner img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:transform .3s}
+.wd-mini-banner:hover img{transform:scale(1.02)}
+
+/* خدمات */
+.wd-services{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.wd-service{display:flex;align-items:center;gap:10px;background:#fff;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200)}
+.wd-service div{display:flex;flex-direction:column;min-width:0}
+.wd-service b{font-size:12.5px;color:var(--wd-title-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wd-service span{font-size:11px;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* بخش‌ها */
+.wd-section{margin-top:26px}
+.wd-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:14px;border-inline-start:4px solid var(--wd-primary-color);padding-inline-start:10px}
+.wd-sec-title{margin:0;font-size:16px;font-weight:800;color:var(--wd-title-color);display:flex;align-items:center;gap:8px}
+.wd-title-icon{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--wd-primary-color);color:#fff;align-items:center;justify-content:center;font-size:14px}
+.wd-sec-sub{margin:3px 0 0;font-size:11.5px;color:var(--gray-500)}
+.wd-see-all{font-size:12px;color:var(--wd-primary-color);font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:3px}
+.wd-see-all span{display:inline-block;transition:transform .2s}
+.wd-see-all:hover span{transform:translateX(-4px)}
+
+/* کاروسل */
+.wd-carousel{margin-inline:-14px;overflow:hidden}
+.wd-track{display:flex;gap:12px;overflow-x:auto;padding:4px 14px 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.wd-track::-webkit-scrollbar{display:none}
+.wd-track>*{scroll-snap-align:start;flex:0 0 auto}
+
+/* کارت محصول */
+.wd-product{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);width:168px;display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s;position:relative;overflow:hidden}
+@media(min-width:768px){.wd-product{width:220px}}
+.wd-product:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.wd-prod-img{position:relative;padding:10px;background:#fff}
+.wd-prod-img img{width:100%;aspect-ratio:1/1;object-fit:contain;transition:opacity .3s}
+.wd-label{position:absolute;top:8px;right:8px;z-index:3;font-size:10.5px;font-weight:700;color:#fff;padding:3px 9px;border-radius:14px}
+.wd-label-sale{background:var(--sale-color)}
+.wd-label-new{background:var(--new-color)}
+.wd-tag-side{position:absolute;top:10px;right:-1px;background:var(--new-color);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:14px 0 0 14px;z-index:3}
+.wd-prod-hover{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateX(-8px);transition:.25s;z-index:3}
+.wd-product:hover .wd-prod-hover,.wd-product:focus-within .wd-prod-hover{opacity:1;transform:none}
+@media(hover:none){.wd-prod-hover{opacity:1;transform:none}}
+.wd-hbtn{width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;color:var(--entities-color)}
+.wd-hbtn:hover{background:var(--wd-primary-color);color:#fff}
+.wd-prod-info{padding:4px 12px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.wd-prod-cat{font-size:10.5px;color:var(--gray-500)}
+.wd-prod-title{margin:0;font-size:12.5px;font-weight:600;line-height:1.5;min-height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wd-prod-title a{color:var(--entities-color)}
+.wd-prod-title a:hover{color:var(--wd-primary-color)}
+.wd-prod-rating{font-size:11px;color:#f5a623;letter-spacing:1px}
+.wd-prod-rating small{color:var(--gray-500);letter-spacing:0}
+.wd-prod-price{font-weight:800;color:var(--wd-primary-color);font-size:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.wd-prod-price del{font-weight:400}
+.wd-prod-attrs{font-size:10.5px;color:var(--gray-500);display:none}
+.wd-prod-desc{margin:0;font-size:11px;color:var(--gray-500);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wd-add-cart{margin-top:auto;background:var(--gray-100);border:1.5px solid var(--gray-200);color:var(--entities-color);border-radius:9px;padding:8px 6px;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
+.wd-add-cart:hover:not(:disabled){background:var(--wd-primary-color);border-color:var(--wd-primary-color);color:#fff}
+.wd-add-cart:disabled{opacity:.5;cursor:not-allowed}
+.wd-stock-out{position:absolute;bottom:10px;left:10px;right:10px;background:rgba(231,76,60,.92);color:#fff;font-size:11px;font-weight:700;text-align:center;padding:6px;border-radius:8px;z-index:4}
+.wd-out-msg{font-size:11.5px;color:var(--sale-color);font-weight:400}
+.is-outofstock .wd-prod-img img{opacity:.55}
+
+/* گرید محصولات */
+.wd-grid-products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.wd-grid-products{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:992px){.wd-grid-products{grid-template-columns:repeat(4,1fr)}}
+.wd-grid-products .wd-product{width:auto}
+
+/* دسته‌بندی منتخب */
+.wd-cats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(min-width:768px){.wd-cats-grid{grid-template-columns:repeat(8,1fr)}}
+.wd-cat-item{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:.25s}
+.wd-cat-item img{width:52px;height:52px;object-fit:contain}
+.wd-cat-item span{font-size:11.5px;font-weight:600;color:var(--entities-color)}
+.wd-cat-item:hover{border-color:var(--wd-primary-color);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.wd-cat-item:hover span{color:var(--wd-primary-color)}
+
+/* بنر عریض */
+.wd-wide-banner{margin-top:26px}
+.wd-wide-banner img{width:100%;border-radius:var(--radius);box-shadow:var(--shadow-sm);object-fit:cover;max-height:220px}
+
+/* برندها */
+.wd-brands-carousel{margin-inline:-14px}
+.brands-track{display:flex;gap:12px;overflow-x:auto;padding:4px 14px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:center}
+.brands-track::-webkit-scrollbar{display:none}
+.wd-brand{flex:0 0 auto;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:center;transition:.25s}
+.wd-brand img{height:46px;width:auto;max-width:110px;object-fit:contain;filter:grayscale(35%);transition:.25s}
+.wd-brand:hover{border-color:var(--wd-primary-color);box-shadow:var(--shadow-sm)}
+.wd-brand:hover img{filter:none}
+
+/* وبلاگ */
+.wd-post{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);width:250px;overflow:hidden;transition:.25s}
+@media(min-width:768px){.wd-post{width:290px}}
+.wd-post:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.wd-post-img{position:relative}
+.wd-post-img img{width:100%;height:160px;object-fit:cover}
+.wd-post-date{position:absolute;bottom:0;right:12px;background:var(--wd-primary-color);color:#fff;text-align:center;border-radius:8px 8px 0 0;padding:5px 10px;line-height:1.25}
+.wd-post-date b{display:block;font-size:16px}
+.wd-post-date i{font-style:normal;font-size:10px;opacity:.9}
+.wd-post-info{padding:12px 14px 16px}
+.wd-post-cat{font-size:10.5px;color:var(--wd-primary-color);font-weight:700;background:rgba(67,95,203,.09);padding:2px 9px;border-radius:12px}
+.wd-post-title{margin:8px 0 6px;font-size:13.5px;font-weight:700;line-height:1.6}
+.wd-post-title a{color:var(--wd-title-color)}
+.wd-post-title a:hover{color:var(--wd-primary-color)}
+.wd-post-meta{margin:0;font-size:11px;color:var(--gray-500)}
+.wd-post-meta a{color:var(--wd-primary-color)}
+
+/* نمادها */
+.wd-sellers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wd-seller{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.wd-seller img{max-height:74px;width:auto;object-fit:contain}
+.wd-seller span{font-size:11.5px;font-weight:600;color:var(--entities-color)}
+
+/* فوتر */
+.wd-footer{background:#23273a;color:#b9bdcd;margin-top:34px}
+.wd-footer-cols{display:grid;grid-template-columns:1fr;gap:26px;padding-block:30px}
+@media(min-width:768px){.wd-footer-cols{grid-template-columns:1.4fr 1.4fr 1fr 1fr}}
+.wd-footer h4{color:#fff;font-size:14px;margin:0 0 12px;position:relative;padding-bottom:8px}
+.wd-footer h4::after{content:"";position:absolute;bottom:0;right:0;width:36px;height:2px;background:var(--wd-primary-color)}
+.wd-footer-col p{font-size:12px;line-height:1.9;margin:10px 0}
+.wd-footer-logo img{filter:brightness(0) invert(1);height:32px}
+.wd-terms{font-size:11px!important;color:#8d92a8}
+.wd-footer-links li{margin-bottom:8px}
+.wd-footer-links a{font-size:12.5px;color:#b9bdcd}
+.wd-footer-links a:hover{color:#fff;padding-inline-start:4px}
+.wd-social{display:flex;gap:8px;margin-top:6px}
+.wd-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s}
+.wd-social a:hover{background:var(--wd-primary-color)}
+.wd-footer-bottom{border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.18)}
+.wd-footer-bottom-in{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;padding-block:14px;font-size:11.5px}
+@media(min-width:768px){.wd-footer-bottom-in{flex-direction:row;justify-content:space-between}}
+.wd-footer-bottom p{margin:0}
+.wd-footer-phone bdi{color:#fff;font-weight:700}
+
+/* ناوبری پایین */
+.wd-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#fff;display:flex;box-shadow:0 -2px 14px rgba(30,40,90,.1);z-index:120}
+.wd-bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;color:var(--gray-500);position:relative;transition:color .2s}
+.wd-bottom-nav a.active,.wd-bottom-nav a:hover{color:var(--wd-primary-color)}
+.wd-bottom-nav a.active::before{content:"";position:absolute;top:0;width:26px;height:3px;border-radius:0 0 4px 4px;background:var(--wd-primary-color)}
+.wd-badge-pin{top:6px;left:calc(50% - 24px);position:absolute}
+@media(min-width:992px){.wd-bottom-nav{display:none}body{padding-bottom:0}}
+
+/* بازگشت به بالا */
+.wd-backtop{position:fixed;bottom:calc(var(--bottom-nav-h) + 16px);left:14px;width:42px;height:42px;border-radius:50%;background:var(--wd-primary-color);color:#fff;font-size:18px;box-shadow:var(--shadow-md);z-index:110;opacity:0;visibility:hidden;transition:.3s}
+.wd-backtop.show{opacity:1;visibility:visible}
+.wd-backtop:hover{background:var(--wd-primary-hover)}
+@media(min-width:992px){.wd-backtop{bottom:24px}}
+
+/* اعلان */
+.wd-toast{position:fixed;bottom:calc(var(--bottom-nav-h) + 18px);right:50%;transform:translate(50%,20px);background:var(--wd-title-color);color:#fff;padding:10px 22px;border-radius:30px;font-size:12.5px;z-index:170;opacity:0;visibility:hidden;transition:.3s;white-space:nowrap;box-shadow:var(--shadow-md);max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+.wd-toast.show{opacity:1;visibility:visible;transform:translate(50%,0)}
+
+/* واکنش‌گرایی */
+.wd-only-mobile{display:inline-flex}
+@media(max-width:767px){
+  .wd-topbar-links,.wd-topbar-phone{display:none}
+  .wd-btn-cat-txt{display:none}
+  .wd-btn-cat{padding:8px 2px}
+  .wd-search-form select{display:none}
+}
+@media(min-width:768px){
+  .wd-topbar-in{min-height:38px}
+  .wd-topbar-links,.wd-topbar-phone{display:flex}
+  .wd-header-row{min-height:66px;gap:14px}
+  .wd-logo img{height:42px}
+  .wd-searchbar{padding-bottom:14px}
+  .wd-prod-attrs{display:block;gap:2px}
+  .wd-prod-attrs li{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+@media(min-width:992px){
+  .wd-only-mobile{display:none}
+  .wd-nav{display:block;border-top:1px solid var(--gray-200)}
+  .wd-btn-cat-txt{display:inline}
+  .wd-slider-arrow{display:flex}
+  .wd-section{margin-top:36px}
+}
